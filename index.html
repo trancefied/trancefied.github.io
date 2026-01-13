@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TranceMir</title>
+  <meta name="description" content="TranceMir private server — news, downloads, patch notes, and community links." />
+  <style>
+    :root { color-scheme: dark; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#070A12; color:#EAF0FF; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
+    .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 28px; }
+    h1 { font-size: 44px; margin: 0 0 10px; letter-spacing: .5px; }
+    p { margin: 0 0 18px; line-height: 1.6; color: rgba(234,240,255,.85); }
+    .btns { display:flex; flex-wrap:wrap; gap:12px; margin-top: 18px; }
+    a.btn { display:inline-block; padding: 12px 16px; border-radius: 14px; text-decoration:none; color:#EAF0FF;
+            border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); }
+    a.btn:hover { background: rgba(255,255,255,.10); }
+    .muted { margin-top: 18px; font-size: 14px; color: rgba(234,240,255,.65); }
+    .bar { display:flex; gap:16px; flex-wrap:wrap; margin-top: 26px; }
+    .pill { padding: 10px 12px; border-radius: 999px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>TranceMir</h1>
+      <p>
+        A custom private server experience — events, progression, PvP, and a community-driven world.
+      </p>
+
+      <div class="btns">
+        <a class="btn" href="#" title="Put your download link here">Download Client</a>
+        <a class="btn" href="#" title="Link your Discord invite here">Join Discord</a>
+        <a class="btn" href="#" title="Patch notes page (we'll add next)">Patch Notes</a>
+        <a class="btn" href="#" title="Rankings page (we'll add next)">Rankings</a>
+      </div>
+
+      <div class="bar">
+        <div class="pill">Server Status: Online</div>
+        <div class="pill">Version: 1.0</div>
+        <div class="pill">Region: EU/ME</div>
+      </div>
+
+      <div class="muted">
+        © <span id="y"></span> TranceMir. All rights reserved.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
