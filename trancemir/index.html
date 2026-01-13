@@ -92,27 +92,28 @@
 
     /* ===== Header / Navigation ===== */
     header {
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(10,14,28,.42);
-      border: 1px solid rgba(255,255,255,.11);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-      animation: riseIn 700ms ease-out both;
-      position: sticky;
-      top: 14px;
-      z-index: 5;
-    }
+     display:flex;
+     justify-content: space-between;
+     align-items:center;
+     gap: 12px;
+     padding: 12px 14px;
+     border-radius: 16px;
+     background: rgba(10,14,28,.42);
+     border: 1px solid rgba(255,255,255,.11);
+     backdrop-filter: blur(12px);
+     box-shadow: 0 18px 60px rgba(0,0,0,.35);
+     animation: riseIn 700ms ease-out both;
+     position: sticky;
+     top: 14px;
+     z-index: 5;
+   }
 
     nav {
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-    }
+     display:flex;
+     flex-wrap:wrap;
+     gap:12px;
+     justify-content:flex-end;
+   }
 
     .navlink {
       position: relative;
@@ -128,6 +129,27 @@
       transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
       overflow: hidden;
     }
+
+    .brand {
+     display: inline-flex;
+     align-items: center;
+     padding: 10px 14px;
+     border-radius: 999px;
+     text-decoration: none;
+     font-size: 14px;
+     font-weight: 800;
+     letter-spacing: .3px;
+     border: 1px solid rgba(255,255,255,.14);
+     background: rgba(255,255,255,.06);
+     transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+   }
+
+   .brand:hover {
+     background: rgba(255,255,255,.11);
+     border-color: rgba(140,170,255,.35);
+     box-shadow: 0 12px 30px rgba(0,0,0,.25);
+     transform: translateY(-1px);
+   }
 
     .navlink:hover {
       background: rgba(255,255,255,.11);
@@ -491,13 +513,15 @@
 
     <!-- Navigation -->
     <header>
-      <nav>
-        <a class="navlink" href="/trancemir/downloads/">Downloads</a>
-        <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
-        <a class="navlink" href="/trancemir/rankings/">Rankings</a>
-        <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
-      </nav>
-    </header>
+     <a class="brand" href="/" aria-label="Trance Games Home">Trance Games</a>
+
+     <nav>
+    <a class="navlink" href="/trancemir/downloads/">Downloads</a>
+    <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
+    <a class="navlink" href="/trancemir/rankings/">Rankings</a>
+    <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
+     </nav>
+   </header>
 
     <!-- Hero -->
     <section class="hero">
@@ -525,7 +549,7 @@
       </p>
 
       <div class="cta">
-        <a class="btn primary" href="/downloads/">Download Client</a>
+        <a class="btn primary" href="/trancemir/downloads/">Download Client</a>
         <a class="btn" href="https://discord.gg/wrVCkxZkXb">Join Discord</a>
         <a class="btn" href="#videos">Watch Videos</a>
       </div>
