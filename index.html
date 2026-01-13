@@ -9,15 +9,22 @@
 
   <style>
     :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
 
     body {
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:#EAF0FF;
+
+      /* Background image + overlay */
       background:
-        linear-gradient(rgba(7,10,18,.78), rgba(7,10,18,.90)),
+        radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.22), transparent 60%),
+        radial-gradient(800px 500px at 80% 0%, rgba(90,255,210,.10), transparent 55%),
+        linear-gradient(rgba(7,10,18,.72), rgba(7,10,18,.92)),
         url("/BG-FHD.jpg") center / cover no-repeat fixed;
+
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     a { color:#EAF0FF; }
@@ -26,6 +33,29 @@
       max-width: 1100px;
       margin: 0 auto;
       padding: 28px 20px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Subtle floating particles */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .55;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.18), transparent 40%),
+        radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,.14), transparent 40%),
+        radial-gradient(1.5px 1.5px at 35% 80%, rgba(255,255,255,.12), transparent 40%),
+        radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,.10), transparent 40%);
+      animation: drift 18s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-10px) translateX(6px); }
     }
 
     /* ===== Header / Navigation ===== */
@@ -35,9 +65,12 @@
       align-items:center;
       padding: 14px 16px;
       border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(8px);
+      background: rgba(10,14,28,.42);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      transform: translateY(0);
+      animation: riseIn 700ms ease-out both;
     }
 
     nav {
@@ -48,6 +81,7 @@
     }
 
     .navlink {
+      position: relative;
       display:inline-block;
       padding: 10px 14px;
       border-radius: 999px;
@@ -55,47 +89,167 @@
       font-size: 14px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.05);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      overflow: hidden;
     }
 
     .navlink:hover {
-      background: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      transform: translateY(-1px);
+    }
+
+    .navlink::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+
+    .navlink:hover::after {
+      transform: translateX(60%) rotate(12deg);
     }
 
     /* ===== Hero ===== */
     .hero {
       margin-top: 24px;
-      padding: 40px 28px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(110,140,255,.12), rgba(255,255,255,.03));
-      border: 1px solid rgba(255,255,255,.10);
+      padding: 44px 30px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(110,140,255,.14), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,.42);
+      animation: riseIn 900ms ease-out both;
     }
+
+    /* Animated aura behind hero */
+    .hero::before,
+    .hero::after {
+      content:"";
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: .35;
+      z-index: 0;
+      animation: pulse 6s ease-in-out infinite;
+    }
+
+    .hero::before {
+      left: -160px;
+      top: -220px;
+      background: rgba(120,150,255,.75);
+    }
+
+    .hero::after {
+      right: -180px;
+      bottom: -240px;
+      background: rgba(90,255,210,.25);
+      animation-delay: 1.2s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(18px, 10px) scale(1.06); }
+    }
+
+    .hero > * { position: relative; z-index: 1; }
 
     h1 {
       margin: 0 0 14px;
-      font-size: 48px;
+      font-size: 52px;
       letter-spacing: .6px;
+      text-shadow: 0 10px 40px rgba(0,0,0,.55);
     }
 
     .hero p {
       margin: 0 auto;
-      line-height: 1.7;
+      line-height: 1.75;
       font-size: 16px;
-      max-width: 75ch;
-      color: rgba(234,240,255,.88);
+      max-width: 78ch;
+      color: rgba(234,240,255,.90);
     }
 
-    /* ===== Footer ===== */
+    /* CTA buttons under the paragraph */
+    .cta {
+      margin-top: 18px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .btn {
+      position: relative;
+      display:inline-block;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      font-weight: 700;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      overflow:hidden;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(140,170,255,.40);
+      transform: translateY(-2px);
+    }
+
+    .btn::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: translateX(-70%) rotate(10deg);
+      transition: transform .55s ease;
+      pointer-events:none;
+    }
+
+    .btn:hover::after {
+      transform: translateX(70%) rotate(10deg);
+    }
+
     footer {
       margin-top: 22px;
       text-align: center;
       font-size: 13px;
       color: rgba(234,240,255,.65);
+      animation: fadeIn 1200ms ease-out both;
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .particles, header, .hero, .navlink::after, .btn::after, .hero::before, .hero::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="particles"></div>
+
   <div class="wrap">
 
     <!-- Navigation -->
@@ -111,20 +265,26 @@
     <!-- Hero / Main Content -->
     <section class="hero">
       <h1>TranceMir</h1>
+
       <p>
-        is a fan-made, seasonal private server based on Mir 3 (Zircon), rebuilt with custom systems,
+        TranceMir is a fan-made, seasonal private server based on Mir 3 (Zircon), rebuilt with custom systems,
         events, and progression designed around fresh starts and evolving gameplay.
         <br><br>
         Each season runs for a limited time, after which the server goes offline and later returns with new
-        content, system changes, balance adjustments, and progression paths. This seasonal approach keeps the
-        experience fresh while encouraging players to explore new mechanics and strategies every cycle.
+        content, system changes, balance adjustments, and progression paths — bringing a fresh experience every cycle.
         <br><br>
         TranceMir focuses on meaningful progression, event-driven content, and a community-first experience,
-        while staying true to the core Mir 3 foundation that long-time players recognize and enjoy.
+        while staying true to the core Mir 3 (Zircon) foundation that long-time players recognize and enjoy.
         <br><br>
         TranceMir is developed and maintained by Trancefied (GM), for fans, and is not affiliated with or
         endorsed by any official Mir 3 or Legend of Mir publisher or rights holder.
       </p>
+
+      <div class="cta">
+        <a class="btn" href="/downloads/">Download Client</a>
+        <a class="btn" href="https://discord.gg/wrVCkxZkXb">Join Discord</a>
+        <a class="btn" href="/rankings/">View Rankings</a>
+      </div>
     </section>
 
     <!-- Footer -->
