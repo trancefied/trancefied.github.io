@@ -82,10 +82,58 @@
   opacity: .65;
 }
 
+    .card.coming:hover {
+  transform: none;
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 28px 80px rgba(0,0,0,.45);
+}
+
 @media (max-width: 800px) {
   .cards {
     grid-template-columns: 1fr;
   }
+}
+    /* TranceMir hover background preview */
+.card.trancemir {
+  overflow: hidden;
+}
+
+.card.trancemir::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/BG-FHD.jpg") center / cover no-repeat;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity .35s ease, transform .6s ease;
+  z-index: 0;
+}
+
+/* dark overlay so text stays readable */
+.card.trancemir::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(7,10,18,.55), rgba(7,10,18,.88));
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 1;
+}
+
+/* ensure text stays above the overlays */
+.card.trancemir h2,
+.card.trancemir span {
+  position: relative;
+  z-index: 2;
+}
+
+.card.trancemir:hover::before {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.card.trancemir:hover::after {
+  opacity: 1;
 }
   </style>
 </head>
@@ -101,7 +149,7 @@
       <span>Seasonal Mir 3 experience</span>
     </a>
 
-    <div class="card trancepw coming">
+    <div class="card trancepw coming" aria-disabled="true">
       <h2>TrancePW</h2>
       <span>Coming soon</span>
     </div>
