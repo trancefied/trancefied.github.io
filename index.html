@@ -80,6 +80,18 @@
   box-shadow: 0 18px 55px rgba(0,0,0,.35);
 }
 
+    .icon img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.45));
+}
+
+.card:hover .icon img {
+  filter: drop-shadow(0 8px 26px rgba(110,140,255,.55));
+}
+
 .card:hover .icon{
   transform: translateY(-2px) scale(1.03);
   transition: transform .25s ease;
@@ -164,7 +176,9 @@
 
   <div class="cards">
     <a class="card trancemir" href="/trancemir/">
-      <div class="icon">🌀</div>
+      <div class="icon">
+        <img src="/trancemir/trancemir.svg" alt="TranceMir" />
+      </div>
       <h2>TranceMir</h2>
       <span>Seasonal Mir 3 experience</span>
     </a>
