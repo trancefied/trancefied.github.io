@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8VLJZNH05"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8VLJZNH05"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D8VLJZNH05');
+  </script>
 
-  gtag('config', 'G-D8VLJZNH05');
-</script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TranceMir</title>
   <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
@@ -92,28 +92,28 @@
 
     /* ===== Header / Navigation ===== */
     header {
-     display:flex;
-     justify-content: space-between;
-     align-items:center;
-     gap: 12px;
-     padding: 12px 14px;
-     border-radius: 16px;
-     background: rgba(10,14,28,.42);
-     border: 1px solid rgba(255,255,255,.11);
-     backdrop-filter: blur(12px);
-     box-shadow: 0 18px 60px rgba(0,0,0,.35);
-     animation: riseIn 700ms ease-out both;
-     position: sticky;
-     top: 14px;
-     z-index: 5;
-   }
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(10,14,28,.42);
+      border: 1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      animation: riseIn 700ms ease-out both;
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+    }
 
     nav {
-     display:flex;
-     flex-wrap:wrap;
-     gap:12px;
-     justify-content:flex-end;
-   }
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-end;
+    }
 
     .navlink {
       position: relative;
@@ -131,27 +131,27 @@
     }
 
     .brand {
-     position: relative;
-     overflow: hidden;
-     display: inline-flex;
-     align-items: center;
-     padding: 10px 14px;
-     border-radius: 999px;
-     text-decoration: none;
-     font-size: 14px;
-     font-weight: 800;
-     letter-spacing: .3px;
-     border: 1px solid rgba(255,255,255,.14);
-     background: rgba(255,255,255,.06);
-     transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
-   }
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
 
-   .brand:hover {
-     background: rgba(255,255,255,.11);
-     border-color: rgba(140,170,255,.35);
-     box-shadow: 0 12px 30px rgba(0,0,0,.25);
-     transform: translateY(-1px);
-   }
+    .brand:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
 
     .navlink:hover {
       background: rgba(255,255,255,.11);
@@ -180,10 +180,7 @@
       transition: transform .45s ease;
       pointer-events:none;
     }
-
-    .brand:hover::after {
-      transform: translateX(60%) rotate(12deg);
-    }
+    .brand:hover::after { transform: translateX(60%) rotate(12deg); }
 
     /* ===== Hero ===== */
     .hero {
@@ -492,6 +489,165 @@
 
     @media (max-width: 520px) { .yt-card { width: 88vw; } }
 
+    /* ===== Classes ===== */
+    .classes {
+      margin-top: 18px;
+      padding: 22px 18px 18px;
+      border-radius: 20px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      animation: riseIn 1100ms ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .classes::before {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(closest-side at 25% 30%, rgba(120,150,255,.16), transparent 60%),
+                  radial-gradient(closest-side at 80% 70%, rgba(90,255,210,.09), transparent 60%);
+      filter: blur(30px);
+      opacity: .9;
+      pointer-events:none;
+    }
+
+    .classes-head {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+
+    .classes-title {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .classes-sub {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: rgba(234,240,255,.72);
+    }
+
+    .class-tabs {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .tab {
+      position: relative;
+      overflow: hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:#EAF0FF;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .tab:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
+
+    .tab::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+    .tab:hover::after { transform: translateX(60%) rotate(12deg); }
+
+    .tab[aria-selected="true"] {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.45);
+      box-shadow: 0 16px 45px rgba(0,0,0,.28);
+    }
+
+    .class-stage {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr minmax(280px, 460px) 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .class-portrait {
+      display:flex;
+      justify-content:center;
+      align-items:flex-end;
+      min-height: 260px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow: hidden;
+    }
+
+    .class-portrait img {
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      object-position: center bottom;
+      display:block;
+      filter: drop-shadow(0 22px 60px rgba(0,0,0,.55));
+    }
+
+    .class-desc {
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+      text-align: center;
+    }
+
+    .class-desc h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+
+    .class-desc p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(234,240,255,.80);
+    }
+
+    @media (max-width: 900px) {
+      .class-stage { grid-template-columns: 1fr; }
+      .class-portrait { min-height: 220px; }
+      .class-desc { text-align: left; }
+    }
+
     footer {
       margin-top: 18px;
       text-align: center;
@@ -513,7 +669,9 @@
     /* Respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .particles, .scanlines, header, .hero, .navlink::after, .btn::after, .hero::before, .hero::after, .hero-shine {
+      .particles, .scanlines, header, .hero, .navlink::after, .brand::after,
+      .btn::after, .hero::before, .hero::after, .hero-shine,
+      .tab::after {
         animation: none !important;
         transition: none !important;
       }
@@ -529,15 +687,15 @@
 
     <!-- Navigation -->
     <header>
-     <a class="brand" href="/" aria-label="Trance Games Home">Trance Games</a>
+      <a class="brand" href="/" aria-label="Trance Games Home">Trance Games</a>
 
-     <nav>
-    <a class="navlink" href="/trancemir/downloads/">Downloads</a>
-    <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
-    <a class="navlink" href="/trancemir/rankings/">Rankings</a>
-    <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
-     </nav>
-   </header>
+      <nav>
+        <a class="navlink" href="/trancemir/downloads/">Downloads</a>
+        <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
+        <a class="navlink" href="/trancemir/rankings/">Rankings</a>
+        <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
+      </nav>
+    </header>
 
     <!-- Hero -->
     <section class="hero">
@@ -545,7 +703,7 @@
 
       <div class="kicker">
         <span class="dot"></span>
-        Second Season "The First Rebirth" is live! 
+        Second Season "The First Rebirth" is live!
       </div>
 
       <h1>TranceMir</h1>
@@ -662,6 +820,41 @@
       </div>
     </section>
 
+    <!-- Classes -->
+    <section class="classes" id="classes" aria-label="TranceMir Classes">
+      <div class="classes-head">
+        <div>
+          <h2 class="classes-title">Classes</h2>
+          <p class="classes-sub">Choose your path — each class brings a different style of power.</p>
+
+          <div class="class-tabs" role="tablist" aria-label="Class selector">
+            <button class="tab" type="button" role="tab" aria-selected="true" data-class="warrior">Warrior</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="wizard">Wizard</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="taoist">Taoist</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="assassin">Assassin</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-stage" aria-live="polite">
+        <div class="class-portrait">
+          <img id="classFemale" src="/trancemir/warf.webp" alt="Warrior (female)">
+        </div>
+
+        <div class="class-desc">
+          <h3 id="className">Warrior</h3>
+          <p id="classText">
+            Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range fights.
+            They trade finesse for raw power, holding the line while delivering crushing melee damage.
+          </p>
+        </div>
+
+        <div class="class-portrait">
+          <img id="classMale" src="/trancemir/warm.webp" alt="Warrior (male)">
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer>
       © <span id="y"></span> TranceMir
@@ -678,6 +871,60 @@
     });
     document.getElementById("ytRight").addEventListener("click", () => {
       ytRow.scrollBy({ left: 420, behavior: "smooth" });
+    });
+
+    // ===== Classes selector =====
+    const CLASS_DATA = {
+      warrior: {
+        name: "Warrior",
+        text: "Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range fights. They trade finesse for raw power, holding the line while delivering crushing melee damage.",
+        male: "/trancemir/warm.webp",
+        female: "/trancemir/warf.webp"
+      },
+      wizard: {
+        name: "Wizard",
+        text: "Wizards command destructive magic from a safe distance, unleashing elemental bursts, area spells, and powerful combos. Fragile up close, they win fights by controlling space and melting enemies before they reach them.",
+        male: "/trancemir/wizm.webp",
+        female: "/trancemir/wizf.webp"
+      },
+      taoist: {
+        name: "Taoist",
+        text: "Taoists walk the line between life and death, blending magic, support, and spiritual control. They can summon loyal pets to fight alongside them, empower allies, weaken foes, and adapt fluidly to any combat situation.",
+        male: "/trancemir/taom.webp",
+        female: "/trancemir/taof.webp"
+      },
+      assassin: {
+        name: "Assassin",
+        text: "Silent, swift, and lethal, Assassins strike from the shadows with unmatched precision. Relying on speed, stealth, and burst damage, they eliminate targets before enemies can react.",
+        male: "/trancemir/sinm.webp",
+        female: "/trancemir/sinf.webp"
+      }
+    };
+
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const classNameEl = document.getElementById("className");
+    const classTextEl = document.getElementById("classText");
+    const classMaleEl = document.getElementById("classMale");
+    const classFemaleEl = document.getElementById("classFemale");
+
+    function setClass(key) {
+      const data = CLASS_DATA[key];
+      if (!data) return;
+
+      classNameEl.textContent = data.name;
+      classTextEl.textContent = data.text;
+
+      classMaleEl.src = data.male;
+      classMaleEl.alt = `${data.name} (male)`;
+
+      classFemaleEl.src = data.female;
+      classFemaleEl.alt = `${data.name} (female)`;
+
+      tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.class === key)));
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => setClass(btn.dataset.class));
     });
   </script>
 </body>
