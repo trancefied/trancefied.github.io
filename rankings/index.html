@@ -6,27 +6,82 @@
   <title>TranceMir — Rankings</title>
   <style>
     :root { color-scheme: dark; }
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#070A12; color:#EAF0FF; }
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#070A12;
+      color:#EAF0FF;
+    }
     .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
-    .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 28px; }
-    .top { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:16px; }
-    .btn { display:inline-block; padding: 10px 14px; border-radius: 14px; text-decoration:none; color:#EAF0FF;
-           border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); }
+
+    .card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .top {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .btn {
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 14px;
+      text-decoration:none;
+      color:#EAF0FF;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+    }
     .btn:hover { background: rgba(255,255,255,.10); }
+
     h1 { margin:0 0 6px; font-size: 34px; }
     p { margin: 0 0 14px; line-height: 1.6; color: rgba(234,240,255,.85); }
 
-    .tabs { display:flex; flex-wrap:wrap; gap:10px; margin: 10px 0 18px; }
-    .tab { padding: 10px 12px; border-radius: 999px; border:1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); cursor:pointer; user-select:none; font-size: 14px; }
+    .tabs { display:flex; gap:10px; margin: 10px 0 18px; }
+    .tab {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      font-size: 14px;
+      user-select:none;
+    }
     .tab.active { background: rgba(255,255,255,.10); }
 
-    table { width:100%; border-collapse: collapse; overflow:hidden; border-radius: 14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); }
-    th, td { text-align:left; padding: 12px 12px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    th { font-size: 13px; color: rgba(234,240,255,.70); font-weight: 600; }
-    td { color: rgba(234,240,255,.90); }
+    table {
+      width:100%;
+      border-collapse: collapse;
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+
+    th, td {
+      text-align:left;
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    th {
+      font-size: 13px;
+      color: rgba(234,240,255,.70);
+      font-weight: 600;
+    }
     tr:last-child td { border-bottom: none; }
 
-    .note { margin-top: 14px; font-size: 14px; color: rgba(234,240,255,.70); }
+    .note {
+      margin-top: 14px;
+      font-size: 14px;
+      color: rgba(234,240,255,.70);
+    }
   </style>
 </head>
 <body>
@@ -35,7 +90,7 @@
       <div class="top">
         <div>
           <h1>Rankings</h1>
-          <p>Top players and guilds. (Placeholder for now — ready to connect later.)</p>
+          <p>Top players and guilds (manual).</p>
         </div>
         <a class="btn" href="/">← Back to Home</a>
       </div>
@@ -45,76 +100,103 @@
         <div class="tab" data-view="guilds">Guilds</div>
       </div>
 
-      <table id="table">
-        <thead>
-          <tr>
-            <th style="width:80px;">Rank</th>
-            <th>Name</th>
-            <th style="width:140px;">Class</th>
-            <th style="width:140px;">Level</th>
-          </tr>
-        </thead>
-        <tbody id="tbody">
-          <tr><td>1</td><td>ExamplePlayer</td><td>Warrior</td><td>99</td></tr>
-          <tr><td>2</td><td>ExampleMage</td><td>Wizard</td><td>95</td></tr>
-          <tr><td>3</td><td>ExampleTao</td><td>Taoist</td><td>92</td></tr>
-        </tbody>
+      <table>
+        <thead id="thead"></thead>
+        <tbody id="tbody"></tbody>
       </table>
 
       <div class="note">
-        Later, we can make this auto-update from your server by generating a JSON file (or exporting from your DB) and the page will render it.
+        Edit the arrays in this file to update rankings.
       </div>
     </div>
   </div>
 
   <script>
+    /* =========================
+       MANUAL DATA
+       ========================= */
+
+    // TOP 10 PLAYERS
+    // Order: Name → Class → Rebirth Level → Level
+    const PLAYERS = [
+      { name: "Inferno", class: "Taoist", rebirth: 2, level: 105 },
+      { name: "Brand",   class: "Assassin",  rebirth: 2, level: 105 },
+      { name: "mysiapysia",    class: "Assassin",  rebirth: 2, level: 104 },
+      { name: "Sin",       class: "Assassin", rebirth: 2, level: 103 },
+      { name: "Warrior",        class: "Warrior",rebirth: 2, level: 102 },
+      { name: "Sky",         class: "Assassin",  rebirth: 2, level: 102 },
+      { name: "Chinka",           class: "Wizard",  rebirth: 2, level: 102 },
+      { name: "Slippers",         class: "Wizard",rebirth: 2, level: 101 },
+      { name: "TYRION",        class: "Warrior", rebirth: 2, level: 101 },
+      { name: "Andyb",       class: "Assassin",  rebirth: 2, level: 101 },
+    ];
+
+    // TOP 5 GUILDS (NAME ONLY)
+    const GUILDS = [
+      "DarkBlades",
+      "NeverMind",
+      "MIR",
+      "Sanctuary",
+      "Socks"
+    ];
+
+    /* =========================
+       RENDER LOGIC
+       ========================= */
+
     const tabs = document.getElementById("tabs");
+    const thead = document.getElementById("thead");
     const tbody = document.getElementById("tbody");
-    const thead = document.querySelector("#table thead");
 
-    const playersRows = `
-      <tr><td>1</td><td>ExamplePlayer</td><td>Warrior</td><td>99</td></tr>
-      <tr><td>2</td><td>ExampleMage</td><td>Wizard</td><td>95</td></tr>
-      <tr><td>3</td><td>ExampleTao</td><td>Taoist</td><td>92</td></tr>
-    `;
+    function renderPlayers() {
+      thead.innerHTML = `
+        <tr>
+          <th style="width:80px;">Rank</th>
+          <th>Name</th>
+          <th style="width:140px;">Class</th>
+          <th style="width:140px;">Rebirth</th>
+          <th style="width:140px;">Level</th>
+        </tr>
+      `;
 
-    const guildsHeader = `
-      <tr>
-        <th style="width:80px;">Rank</th>
-        <th>Guild</th>
-        <th style="width:180px;">Leader</th>
-        <th style="width:140px;">Score</th>
-      </tr>
-    `;
+      tbody.innerHTML = PLAYERS.map((p, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${p.name}</td>
+          <td>${p.class}</td>
+          <td>${p.rebirth}</td>
+          <td>${p.level}</td>
+        </tr>
+      `).join("");
+    }
 
-    const guildsRows = `
-      <tr><td>1</td><td>ExampleGuild</td><td>Inferno</td><td>12345</td></tr>
-      <tr><td>2</td><td>NeverMind</td><td>Jetter</td><td>11002</td></tr>
-      <tr><td>3</td><td>SanctuarY</td><td>Alice</td><td>9800</td></tr>
-    `;
+    function renderGuilds() {
+      thead.innerHTML = `
+        <tr>
+          <th style="width:80px;">Rank</th>
+          <th>Guild Name</th>
+        </tr>
+      `;
 
-    tabs.addEventListener("click", (e) => {
+      tbody.innerHTML = GUILDS.map((g, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${g || "—"}</td>
+        </tr>
+      `).join("");
+    }
+
+    // Default view
+    renderPlayers();
+
+    tabs.addEventListener("click", e => {
       const tab = e.target.closest(".tab");
       if (!tab) return;
 
       document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
 
-      const view = tab.dataset.view;
-      if (view === "players") {
-        thead.innerHTML = `
-          <tr>
-            <th style="width:80px;">Rank</th>
-            <th>Name</th>
-            <th style="width:140px;">Class</th>
-            <th style="width:140px;">Level</th>
-          </tr>
-        `;
-        tbody.innerHTML = playersRows;
-      } else {
-        thead.innerHTML = guildsHeader;
-        tbody.innerHTML = guildsRows;
-      }
+      tab.dataset.view === "players" ? renderPlayers() : renderGuilds();
     });
   </script>
 </body>
