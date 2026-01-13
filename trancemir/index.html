@@ -1,244 +1,931 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8VLJZNH05"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-D8VLJZNH05');
-    </script>
+  <meta charset="utf-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8VLJZNH05"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D8VLJZNH05');
+  </script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>TranceMir</title>
-    <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
-    <meta name="description" content="Fan-made seasonal Mir 3 (Zircon) private server with custom systems, events, and fresh progression each season." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TranceMir</title>
+  <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Fan-made seasonal Mir 3 (Zircon) private server with custom systems, events, and fresh progression each season." />
 
-    <style>
-        :root {
-            color-scheme: dark;
-        }
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-        * {
-            box-sizing: border-box;
-        }
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#EAF0FF;
 
-        html {
-            scroll-behavior: smooth;
-        }
+      /* Background image + layered mood lighting */
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%),
+        radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%),
+        radial-gradient(900px 620px at 50% 110%, rgba(255,140,200,.06), transparent 60%),
+        linear-gradient(rgba(7,10,18,.70), rgba(7,10,18,.94)),
+        url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            color: #EAF0FF;
-            background: radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%), radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%), linear-gradient(rgba(7,10,18,.80), rgba(7,10,18,.95)), url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        a {
-            color: #EAF0FF;
-        }
+    a { color:#EAF0FF; }
 
-        .wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 22px 20px 56px;
-        }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 56px;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* ===== Header ===== */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 14px;
-            border-radius: 16px;
-            background: rgba(10,14,28,.42);
-            border: 1px solid rgba(255,255,255,.11);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 18px 60px rgba(0,0,0,.35);
-            position: sticky;
-            top: 14px;
-            z-index: 5;
-        }
+    /* ===== Subtle particles + scanline ===== */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .55;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.16), transparent 40%),
+        radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,.12), transparent 40%),
+        radial-gradient(1.5px 1.5px at 35% 80%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,.09), transparent 40%),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,.09), transparent 40%);
+      animation: drift 18s ease-in-out infinite;
+    }
 
-        .brand, .navlink {
-            padding: 10px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.14);
-            background: rgba(255,255,255,.05);
-            text-decoration: none;
-            font-size: 14px;
-            transition: .2s;
-        }
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .08;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.10) 0px,
+        rgba(255,255,255,.10) 1px,
+        transparent 2px,
+        transparent 6px
+      );
+      mix-blend-mode: overlay;
+      animation: scan 10s linear infinite;
+    }
 
-        .brand {
-            font-weight: 800;
-        }
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-10px) translateX(6px); }
+    }
+    @keyframes scan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
 
-            .brand:hover, .navlink:hover {
-                background: rgba(255,255,255,.12);
-                border-color: rgba(140,170,255,.35);
-                transform: translateY(-1px);
-            }
+    /* ===== Header / Navigation ===== */
+    header {
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(10,14,28,.42);
+      border: 1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      animation: riseIn 700ms ease-out both;
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+    }
 
-        nav {
-            display: flex;
-            gap: 12px;
-        }
+    nav {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-end;
+    }
 
-        /* ===== Classes ===== */
-        .classes {
-            margin-top: 28px;
-            padding: 22px;
-            border-radius: 20px;
-            background: rgba(10,14,28,.38);
-            border: 1px solid rgba(255,255,255,.10);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 22px 70px rgba(0,0,0,.35);
-        }
+    .navlink {
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-size: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      overflow: hidden;
+    }
 
-        .class-tabs {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
+    .brand {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
 
-        .tab {
-            padding: 10px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.14);
-            background: rgba(255,255,255,.05);
-            color: #EAF0FF;
-            cursor: pointer;
-            font-weight: 800;
-            transition: .2s;
-        }
+    .brand:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
 
-            .tab[aria-selected="true"],
-            .tab:hover {
-                background: rgba(255,255,255,.12);
-                border-color: rgba(140,170,255,.45);
-            }
+    .navlink:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
 
-        .class-stage {
-            display: grid;
-            grid-template-columns: 1fr minmax(280px,460px) 1fr;
-            gap: 14px;
-            align-items: center;
-        }
+    .navlink::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+    .navlink:hover::after { transform: translateX(60%) rotate(12deg); }
 
-        .class-portrait {
-            background: #000;
-            border-radius: 18px;
-            padding: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 12px 40px rgba(0,0,0,.6);
-        }
+    .brand::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+    .brand:hover::after { transform: translateX(60%) rotate(12deg); }
 
-            .class-portrait img {
-                max-height: 420px;
-                width: auto;
-                object-fit: contain;
-                display: block;
-            }
+    /* ===== Hero ===== */
+    .hero {
+      margin-top: 18px;
+      padding: 46px 34px 28px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(110,140,255,.16), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,.42);
+      animation: riseIn 900ms ease-out both;
+    }
 
-        .class-desc {
-            padding: 18px;
-            border-radius: 18px;
-            background: rgba(255,255,255,.03);
-            border: 1px solid rgba(255,255,255,.10);
-            text-align: center;
-        }
+    /* Animated aura behind hero */
+    .hero::before,
+    .hero::after {
+      content:"";
+      position:absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .34;
+      z-index: 0;
+      animation: pulse 7s ease-in-out infinite;
+    }
+    .hero::before {
+      left: -200px;
+      top: -260px;
+      background: rgba(120,150,255,.75);
+    }
+    .hero::after {
+      right: -220px;
+      bottom: -280px;
+      background: rgba(90,255,210,.26);
+      animation-delay: 1.2s;
+    }
 
-        @media (max-width:900px) {
-            .class-stage {
-                grid-template-columns: 1fr;
-            }
-        }
+    /* subtle moving highlight inside hero */
+    .hero-shine {
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.10), transparent);
+      transform: translateX(-60%) rotate(10deg);
+      animation: shine 7.5s ease-in-out infinite;
+      pointer-events:none;
+      z-index: 0;
+    }
 
-        footer {
-            margin-top: 18px;
-            text-align: center;
-            font-size: 13px;
-            color: rgba(234,240,255,.65);
-        }
-    </style>
+    @keyframes pulse {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(18px, 10px) scale(1.06); }
+    }
+    @keyframes shine {
+      0% { transform: translateX(-60%) rotate(10deg); opacity:.0; }
+      20% { opacity:.5; }
+      55% { opacity:.0; }
+      100% { transform: translateX(60%) rotate(10deg); opacity:0; }
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,240,255,.85);
+      font-size: 13px;
+      margin: 0 auto 14px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(90,255,210,.85);
+      box-shadow: 0 0 18px rgba(90,255,210,.45);
+      animation: blink 1.7s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: .55; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 56px;
+      letter-spacing: .7px;
+      text-shadow: 0 14px 55px rgba(0,0,0,.60);
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 80ch;
+      color: rgba(234,240,255,.90);
+    }
+
+    /* CTA buttons */
+    .cta {
+      margin-top: 18px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .btn {
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      font-weight: 800;
+      letter-spacing: .2px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+      min-width: 190px;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.13);
+      border-color: rgba(140,170,255,.40);
+      box-shadow: 0 16px 45px rgba(0,0,0,.28);
+      transform: translateY(-2px);
+    }
+
+    .btn::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: translateX(-70%) rotate(10deg);
+      transition: transform .55s ease;
+      pointer-events:none;
+    }
+    .btn:hover::after { transform: translateX(70%) rotate(10deg); }
+
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(110,140,255,.18), rgba(255,255,255,.06));
+      border-color: rgba(140,170,255,.40);
+    }
+
+    /* ===== Quick feature cards ===== */
+    .features {
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      animation: riseIn 1000ms ease-out both;
+    }
+
+    .card {
+      padding: 16px 16px 15px;
+      border-radius: 18px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.30);
+      text-align: left;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(140,170,255,.26);
+      background: rgba(255,255,255,.05);
+    }
+
+    .card b { display:block; margin-bottom: 6px; }
+    .card span { color: rgba(234,240,255,.78); line-height: 1.55; font-size: 14px; }
+
+    @media (max-width: 900px) {
+      .features { grid-template-columns: 1fr; }
+      h1 { font-size: 46px; }
+      .btn { min-width: 0; width: 100%; }
+    }
+
+    /* ===== YouTube Row ===== */
+    .yt {
+      margin-top: 18px;
+      padding: 22px 18px 18px;
+      border-radius: 20px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      animation: riseIn 1050ms ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .yt::before {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(closest-side at 30% 20%, rgba(120,150,255,.18), transparent 60%),
+                  radial-gradient(closest-side at 80% 70%, rgba(90,255,210,.10), transparent 60%);
+      filter: blur(30px);
+      opacity: .9;
+      pointer-events:none;
+    }
+
+    .yt-head {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+
+    .yt-title {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .yt-sub {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: rgba(234,240,255,.72);
+    }
+
+    .yt-actions {
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .yt-arrow {
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:#EAF0FF;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .yt-arrow:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(140,170,255,.35);
+      transform: translateY(-1px);
+    }
+
+    .yt-row {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 10px 4px 6px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .yt-row::-webkit-scrollbar { height: 10px; }
+    .yt-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,.14); border-radius: 999px; }
+    .yt-row::-webkit-scrollbar-track { background: rgba(255,255,255,.05); border-radius: 999px; }
+
+    .yt-card {
+      flex: 0 0 auto;
+      width: 360px;
+      scroll-snap-align: start;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .yt-card:hover { transform: translateY(-2px); border-color: rgba(140,170,255,.28); }
+
+    .yt-embed {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border: 0;
+      display:block;
+    }
+
+    .yt-cap {
+      padding: 12px 12px 14px;
+      font-size: 14px;
+      color: rgba(234,240,255,.88);
+    }
+    .yt-cap small { display:block; margin-top: 3px; color: rgba(234,240,255,.65); font-size: 12px; }
+
+    @media (max-width: 520px) { .yt-card { width: 88vw; } }
+
+    /* ===== Classes ===== */
+    .classes {
+      margin-top: 18px;
+      padding: 22px 18px 18px;
+      border-radius: 20px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      animation: riseIn 1100ms ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .classes::before {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(closest-side at 25% 30%, rgba(120,150,255,.16), transparent 60%),
+                  radial-gradient(closest-side at 80% 70%, rgba(90,255,210,.09), transparent 60%);
+      filter: blur(30px);
+      opacity: .9;
+      pointer-events:none;
+    }
+
+    .classes-head {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+    }
+
+    .classes-title {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .classes-sub {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: rgba(234,240,255,.72);
+    }
+
+    .class-tabs {
+      position: relative;
+      z-index: 1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .tab {
+      position: relative;
+      overflow: hidden;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color:#EAF0FF;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .tab:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
+
+    .tab::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+    .tab:hover::after { transform: translateX(60%) rotate(12deg); }
+
+    .tab[aria-selected="true"] {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.45);
+      box-shadow: 0 16px 45px rgba(0,0,0,.28);
+    }
+
+    .class-stage {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr minmax(280px, 460px) 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+      .class-portrait {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          min-height: 260px;
+          border-radius: 18px;
+          border: 1px solid rgba(255,255,255,.10);
+          background: #000;
+          overflow: hidden;
+      }
+
+    .class-portrait img {
+      width: 100%;
+      height: 100%;
+      max-height: 420px;
+      object-fit: contain;
+      object-position: center bottom;
+      display:block;
+      filter: drop-shadow(0 22px 60px rgba(0,0,0,.55));
+    }
+
+    .class-desc {
+      padding: 18px 18px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+      text-align: center;
+    }
+
+    .class-desc h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+
+    .class-desc p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(234,240,255,.80);
+    }
+
+    @media (max-width: 900px) {
+      .class-stage { grid-template-columns: 1fr; }
+      .class-portrait { min-height: 220px; }
+      .class-desc { text-align: left; }
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(234,240,255,.65);
+      animation: fadeIn 1200ms ease-out both;
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .particles, .scanlines, header, .hero, .navlink::after, .brand::after,
+      .btn::after, .hero::before, .hero::after, .hero-shine,
+      .tab::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="wrap">
+  <div class="particles"></div>
+  <div class="scanlines"></div>
 
-        <header>
-            <a class="brand" href="/">Trance Games</a>
-            <nav>
-                <a class="navlink" href="/trancemir/downloads/">Downloads</a>
-                <a class="navlink" href="/trancemir/rankings/">Rankings</a>
-                <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
-            </nav>
-        </header>
+  <div class="wrap">
 
-        <section class="classes" id="classes">
-            <h2>Classes</h2>
-            <p>Choose your path — each class brings a different style of power.</p>
+    <!-- Navigation -->
+    <header>
+      <a class="brand" href="/" aria-label="Trance Games Home">Trance Games</a>
 
-            <div class="class-tabs">
-                <button class="tab" aria-selected="true" data-class="warrior">Warrior</button>
-                <button class="tab" data-class="wizard">Wizard</button>
-                <button class="tab" data-class="taoist">Taoist</button>
-                <button class="tab" data-class="assassin">Assassin</button>
-            </div>
+      <nav>
+        <a class="navlink" href="/trancemir/downloads/">Downloads</a>
+        <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
+        <a class="navlink" href="/trancemir/rankings/">Rankings</a>
+        <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
+      </nav>
+    </header>
 
-            <div class="class-stage">
-                <div class="class-portrait">
-                    <img id="classFemale" src="/trancemir/warf.png">
-                </div>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-shine"></div>
 
-                <div class="class-desc">
-                    <h3 id="className">Warrior</h3>
-                    <p id="classText">
-                        Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range combat.
-                    </p>
-                </div>
+      <div class="kicker">
+        <span class="dot"></span>
+        Second Season "The First Rebirth" is live!
+      </div>
 
-                <div class="class-portrait">
-                    <img id="classMale" src="/trancemir/warm.png">
-                </div>
-            </div>
-        </section>
+      <h1>TranceMir</h1>
 
-        <footer>© TranceMir</footer>
+      <p class="subtitle">
+        is a fan-made, seasonal private server based on <strong>Mir 3 (Zircon)</strong>, rebuilt with custom systems,
+        events, and progression designed around fresh starts and evolving gameplay.
+        <br><br>
+        Each season runs for a limited time, after which the server goes offline and later returns with new
+        content, system changes, balance adjustments, and progression paths — bringing a fresh experience every cycle.
+        <br><br>
+        TranceMir focuses on meaningful progression, event-driven content, and a community-first experience,
+        while staying true to the core Mir 3 foundation that long-time players recognize and enjoy.
+        <br><br>
+        TranceMir is developed and maintained by Trancefied (TranceMirGM), for fans, and is not affiliated with or
+        endorsed by any official Mir 3 or Legend of Mir publisher or rights holder.
+      </p>
 
-    </div>
+      <div class="cta">
+        <a class="btn primary" href="/trancemir/downloads/">Download Client</a>
+        <a class="btn" href="https://discord.gg/wrVCkxZkXb">Join Discord</a>
+        <a class="btn" href="#videos">Watch Videos</a>
+      </div>
 
-    <script>
-        const DATA = {
-            warrior: { name: "Warrior", text: "Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range combat.", male: "/trancemir/warm.png", female: "/trancemir/warf.png" },
-            wizard: { name: "Wizard", text: "Wizards command destructive magic from afar, overwhelming enemies with elemental power.", male: "/trancemir/wizm.png", female: "/trancemir/wizf.png" },
-            taoist: { name: "Taoist", text: "Taoists blend support, magic, and spiritual control, summoning loyal pets and empowering allies.", male: "/trancemir/taom.png", female: "/trancemir/taof.png" },
-            assassin: { name: "Assassin", text: "Silent and swift, Assassins rely on speed and precision to eliminate enemies before they react.", male: "/trancemir/sinm.png", female: "/trancemir/sinf.png" }
-        };
+      <div class="features">
+        <div class="card">
+          <b>Seasonal Fresh Starts</b>
+          <span>New cycles every ~6 months with new mechanics, changes, and progression paths.</span>
+        </div>
+        <div class="card">
+          <b>Custom Systems & Events</b>
+          <span>Fan-built content designed to keep the world evolving season after season.</span>
+        </div>
+        <div class="card">
+          <b>Community-Driven</b>
+          <span>Transparent updates, feedback-driven changes, and an active Discord hub.</span>
+        </div>
+      </div>
+    </section>
 
-        const tabs = document.querySelectorAll(".tab");
-        const nameEl = document.getElementById("className");
-        const textEl = document.getElementById("classText");
-        const maleEl = document.getElementById("classMale");
-        const femaleEl = document.getElementById("classFemale");
+    <!-- Videos -->
+    <section class="yt" id="videos" aria-label="TranceMir YouTube Videos">
+      <div class="yt-head">
+        <div>
+          <h2 class="yt-title">Videos</h2>
+          <p class="yt-sub">Highlights, events, and showcases from TranceMir.</p>
+        </div>
 
-        tabs.forEach(t => t.onclick = () => {
-            const d = DATA[t.dataset.class];
-            nameEl.textContent = d.name;
-            textEl.textContent = d.text;
-            maleEl.src = d.male;
-            femaleEl.src = d.female;
-            tabs.forEach(x => x.setAttribute("aria-selected", x === t));
-        });
-    </script>
+        <div class="yt-actions">
+          <button class="yt-arrow" type="button" id="ytLeft">←</button>
+          <button class="yt-arrow" type="button" id="ytRight">→</button>
+          <a class="btn" href="https://www.youtube.com/@TranceMirServer" target="_blank" rel="noopener">
+            Visit YouTube Channel
+          </a>
+        </div>
+      </div>
 
+      <div class="yt-row" id="ytRow">
+        <div class="yt-card">
+          <iframe class="yt-embed"
+            src="https://www.youtube.com/embed/hpplOPItERY"
+            title="Sabuk Wall Conquest"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <div class="yt-cap">
+            <strong>Sabuk Wall Conquest</strong>
+            <small>Season highlight</small>
+          </div>
+        </div>
+
+        <div class="yt-card">
+          <iframe class="yt-embed"
+            src="https://www.youtube.com/embed/qQ-0HqhcG90"
+            title="Halloween Event"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <div class="yt-cap">
+            <strong>Halloween Event</strong>
+            <small>Event showcase</small>
+          </div>
+        </div>
+
+        <div class="yt-card">
+          <iframe class="yt-embed"
+            src="https://www.youtube.com/embed/NvNL52kppwo"
+            title="Infernal Bastion Event"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <div class="yt-cap">
+            <strong>Infernal Bastion Event</strong>
+            <small>Dungeon / event</small>
+          </div>
+        </div>
+
+        <div class="yt-card">
+          <iframe class="yt-embed"
+            src="https://www.youtube.com/embed/YEkSm-WJMGE"
+            title="Chaotic Heaven Blade Revamped"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          <div class="yt-cap">
+            <strong>Chaotic Heaven Blade Revamped</strong>
+            <small>Content update</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Classes -->
+    <section class="classes" id="classes" aria-label="TranceMir Classes">
+      <div class="classes-head">
+        <div>
+          <h2 class="classes-title">Classes</h2>
+          <p class="classes-sub">Choose your path — each class brings a different style of power.</p>
+
+          <div class="class-tabs" role="tablist" aria-label="Class selector">
+            <button class="tab" type="button" role="tab" aria-selected="true" data-class="warrior">Warrior</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="wizard">Wizard</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="taoist">Taoist</button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-class="assassin">Assassin</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-stage" aria-live="polite">
+        <div class="class-portrait">
+          <img id="classFemale" src="/trancemir/warf.png" alt="Warrior (female)">
+        </div>
+
+        <div class="class-desc">
+          <h3 id="className">Warrior</h3>
+          <p id="classText">
+            Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range fights.
+            They trade finesse for raw power, holding the line while delivering crushing melee damage.
+          </p>
+        </div>
+
+        <div class="class-portrait">
+          <img id="classMale" src="/trancemir/warm.png" alt="Warrior (male)">
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      © <span id="y"></span> TranceMir
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const ytRow = document.getElementById("ytRow");
+    document.getElementById("ytLeft").addEventListener("click", () => {
+      ytRow.scrollBy({ left: -420, behavior: "smooth" });
+    });
+    document.getElementById("ytRight").addEventListener("click", () => {
+      ytRow.scrollBy({ left: 420, behavior: "smooth" });
+    });
+
+    // ===== Classes selector =====
+    const CLASS_DATA = {
+      warrior: {
+        name: "Warrior",
+        text: "Warriors are frontline masters of steel — durable, relentless, and built to dominate close-range fights. They trade finesse for raw power, holding the line while delivering crushing melee damage.",
+        male: "/trancemir/warm.png",
+        female: "/trancemir/warf.png"
+      },
+      wizard: {
+        name: "Wizard",
+        text: "Wizards command destructive magic from a safe distance, unleashing elemental bursts, area spells, and powerful combos. Fragile up close, they win fights by controlling space and melting enemies before they reach them.",
+        male: "/trancemir/wizm.png",
+        female: "/trancemir/wizf.png"
+      },
+      taoist: {
+        name: "Taoist",
+        text: "Taoists walk the line between life and death, blending magic, support, and spiritual control. They can summon loyal pets to fight alongside them, empower allies, weaken foes, and adapt fluidly to any combat situation.",
+        male: "/trancemir/taom.png",
+        female: "/trancemir/taof.png"
+      },
+      assassin: {
+        name: "Assassin",
+        text: "Silent, swift, and lethal, Assassins strike from the shadows with unmatched precision. Relying on speed, stealth, and burst damage, they eliminate targets before enemies can react.",
+        male: "/trancemir/sinm.png",
+        female: "/trancemir/sinf.png"
+      }
+    };
+
+    const tabs = Array.from(document.querySelectorAll(".tab"));
+    const classNameEl = document.getElementById("className");
+    const classTextEl = document.getElementById("classText");
+    const classMaleEl = document.getElementById("classMale");
+    const classFemaleEl = document.getElementById("classFemale");
+
+    function setClass(key) {
+      const data = CLASS_DATA[key];
+      if (!data) return;
+
+      classNameEl.textContent = data.name;
+      classTextEl.textContent = data.text;
+
+      classMaleEl.src = data.male;
+      classMaleEl.alt = `${data.name} (male)`;
+
+      classFemaleEl.src = data.female;
+      classFemaleEl.alt = `${data.name} (female)`;
+
+      tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.class === key)));
+    }
+
+    tabs.forEach(btn => {
+      btn.addEventListener("click", () => setClass(btn.dataset.class));
+    });
+  </script>
 </body>
 </html>
