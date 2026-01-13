@@ -131,6 +131,8 @@
     }
 
     .brand {
+     position: relative;
+     overflow: hidden;
      display: inline-flex;
      align-items: center;
      padding: 10px 14px;
@@ -168,6 +170,20 @@
       pointer-events:none;
     }
     .navlink:hover::after { transform: translateX(60%) rotate(12deg); }
+
+    .brand::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+
+    .brand:hover::after {
+      transform: translateX(60%) rotate(12deg);
+    }
 
     /* ===== Hero ===== */
     .hero {
