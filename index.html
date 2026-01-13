@@ -5,82 +5,102 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TranceMir</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <meta name="description" content="TranceMir private server — downloads, patch notes, rankings, and community links." />
+  <meta name="description" content="Fan-made seasonal Mir 3 (Zircon) private server with custom systems, events, and fresh progression each season." />
+
   <style>
     :root { color-scheme: dark; }
+
     body {
-  margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:#EAF0FF;
-
-  /* Background image */
-  background:
-    linear-gradient(rgba(7,10,18,.78), rgba(7,10,18,.90)),
-    url("/BG-FHD.jpg") center / cover no-repeat fixed;
-
-  min-height: 100vh;
-}
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#EAF0FF;
+      background:
+        linear-gradient(rgba(7,10,18,.78), rgba(7,10,18,.90)),
+        url("/BG-FHD.jpg") center / cover no-repeat fixed;
+      min-height: 100vh;
+    }
 
     a { color:#EAF0FF; }
 
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 56px; }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 56px;
+    }
 
+    /* ===== Header / Navigation ===== */
     header {
-      display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      padding: 14px 16px; border-radius: 16px;
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(8px);
     }
-    .brand { display:flex; flex-direction:column; gap:2px; }
-    .brand b { font-size: 18px; letter-spacing:.4px; }
-    .brand span { font-size: 13px; color: rgba(234,240,255,.70); }
 
-    nav { display:flex; flex-wrap:wrap; gap:10px; }
+    nav {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:center;
+    }
+
     .navlink {
-      display:inline-block; padding: 10px 12px; border-radius: 999px; text-decoration:none;
-      border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.05);
+      display:inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
       font-size: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
     }
-    .navlink:hover { background: rgba(255,255,255,.10); }
 
+    .navlink:hover {
+      background: rgba(255,255,255,.12);
+    }
+
+    /* ===== Hero ===== */
     .hero {
-      margin-top: 18px;
-      padding: 34px 26px;
-      border-radius: 18px;
+      margin-top: 24px;
+      padding: 40px 28px;
+      border-radius: 20px;
       background: linear-gradient(180deg, rgba(110,140,255,.12), rgba(255,255,255,.03));
       border: 1px solid rgba(255,255,255,.10);
+      text-align: center;
     }
-    h1 { margin: 0 0 10px; font-size: 46px; letter-spacing: .5px; }
-    p { margin: 0; line-height: 1.6; color: rgba(234,240,255,.85); font-size: 16px; max-width: 70ch; }
 
-    .cta { display:flex; flex-wrap:wrap; gap:12px; margin-top: 18px; }
-    .btn {
-      display:inline-block; padding: 12px 16px; border-radius: 14px; text-decoration:none;
-      border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06);
-      font-weight: 600;
+    h1 {
+      margin: 0 0 14px;
+      font-size: 48px;
+      letter-spacing: .6px;
     }
-    .btn:hover { background: rgba(255,255,255,.10); }
 
-    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
-    .tile {
-      padding: 16px; border-radius: 16px;
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+    .hero p {
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 75ch;
+      color: rgba(234,240,255,.88);
     }
-    .tile b { display:block; margin-bottom: 6px; }
-    .tile span { color: rgba(234,240,255,.78); line-height: 1.5; font-size: 14px; }
-    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
 
-    footer { margin-top: 18px; font-size: 13px; color: rgba(234,240,255,.65); padding-left: 2px; }
+    /* ===== Footer ===== */
+    footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(234,240,255,.65);
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
 
+    <!-- Navigation -->
     <header>
-      <div class="brand">
-        <b>TranceMir</b>
-      </div>
       <nav>
-        <a class="navlink" href="/">Home</a>
         <a class="navlink" href="/downloads/">Downloads</a>
         <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
         <a class="navlink" href="/rankings/">Rankings</a>
@@ -88,21 +108,30 @@
       </nav>
     </header>
 
+    <!-- Hero / Main Content -->
     <section class="hero">
       <h1>TranceMir</h1>
       <p>
-        TranceMir is a fan-made, seasonal private server based on Mir 3 (Zircon), rebuilt with custom systems, events, and progression designed around fresh starts and evolving gameplay.
-
-        Each season runs for a limited time, after which the server goes offline and later returns with new content, system changes, balance adjustments, and progression paths. This seasonal approach keeps the experience fresh while encouraging players to explore new mechanics and strategies every cycle.
-
-        TranceMir focuses on meaningful progression, event-driven content, and a community-first experience, while staying true to the core Mir 3 (Zircon) foundation that long-time players recognize and enjoy.
-
-        TranceMir is developed and maintained by Trancefied (GM), for fans, and is not affiliated with or endorsed by any official Mir 3 or Legend of Mir publisher or rights holder.
+        is a fan-made, seasonal private server based on Mir 3 (Zircon), rebuilt with custom systems,
+        events, and progression designed around fresh starts and evolving gameplay.
+        <br><br>
+        Each season runs for a limited time, after which the server goes offline and later returns with new
+        content, system changes, balance adjustments, and progression paths. This seasonal approach keeps the
+        experience fresh while encouraging players to explore new mechanics and strategies every cycle.
+        <br><br>
+        TranceMir focuses on meaningful progression, event-driven content, and a community-first experience,
+        while staying true to the core Mir 3 foundation that long-time players recognize and enjoy.
+        <br><br>
+        TranceMir is developed and maintained by Trancefied (GM), for fans, and is not affiliated with or
+        endorsed by any official Mir 3 or Legend of Mir publisher or rights holder.
       </p>
-      
     </section>
 
-    <footer>© <span id="y"></span> TranceMir.</footer>
+    <!-- Footer -->
+    <footer>
+      © <span id="y"></span> TranceMir
+    </footer>
+
   </div>
 
   <script>
