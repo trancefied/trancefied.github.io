@@ -1,82 +1,158 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TranceMir — Downloads</title>
-  <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
-  <style>
-    :root { color-scheme: dark; }
-    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#070A12; color:#EAF0FF; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
-    .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 28px; }
-    a { color:#EAF0FF; }
-    .top { display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:16px; }
-    .btn { display:inline-block; padding: 10px 14px; border-radius: 14px; text-decoration:none;
-           border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); }
-    .btn:hover { background: rgba(255,255,255,.10); }
-    h1 { margin:0 0 6px; font-size: 34px; }
-    p { margin: 0 0 14px; line-height: 1.6; color: rgba(234,240,255,.85); }
-    .box { margin-top:14px; padding:16px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.03); }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TranceMir — Downloads</title>
+    <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #070A12;
+            color: #EAF0FF;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 56px 20px;
+        }
+
+        .card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        a {
+            color: #EAF0FF;
+        }
+
+        .top {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.06);
+        }
+
+            .btn:hover {
+                background: rgba(255,255,255,.10);
+            }
+
+        h1 {
+            margin: 0 0 6px;
+            font-size: 34px;
+        }
+
+        p {
+            margin: 0 0 14px;
+            line-height: 1.6;
+            color: rgba(234,240,255,.85);
+        }
+
+        .box {
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,.10);
+            background: rgba(255,255,255,.03);
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div>
-          <h1>Downloads</h1>
-          <p>Client + setup instructions for TranceMir.</p>
+    <div class="wrap">
+        <div class="card">
+            <div class="top">
+                <div>
+                    <h1>Downloads</h1>
+                    <p>Client + setup instructions for TranceMir.</p>
+                </div>
+                <a class="btn" href="/trancemir/">← Back to Home</a>
+            </div>
+
+            <div class="box">
+                <p><strong>Client Download:</strong></p>
+
+                <p style="display:flex; gap:12px; flex-wrap:wrap;">
+                    <a class="btn"
+                       href="https://drive.google.com/uc?export=download&id=1uVM24qcHqfibVE5i5U89WyAYBtpmG6Ee"
+                       target="_blank"
+                       rel="noopener">
+                        Download TranceMir Client (3 GB) Compressed
+                    </a>
+
+                    <a class="btn"
+                       href="https://downloads.trancegames.com/TranceMir_Setup.exe"
+                       target="_blank"
+                       rel="noopener">
+                        Download TranceMir Client (3 GB) Installer
+                    </a>
+                </p>
+
+                <p style="margin-top:12px;">
+                    <strong>Installation Notes:</strong><br />
+                    • Extract the client to a <strong>new folder</strong> (don’t overwrite old installs).<br />
+                    • If the game doesn’t launch, install the required dependencies below.<br />
+                </p>
+
+                <p style="margin-top:12px;">
+                    <strong>Required Dependencies:</strong><br />
+                    <a class="btn"
+                       href="https://mirfiles.com/resources/mir3/zircon/ZirconClientDependencies.zip"
+                       target="_blank"
+                       rel="noopener">
+                        Download TranceMir Dependencies (ZIP)
+                    </a>
+                </p>
+
+                <p style="margin-top:12px;">
+                    <strong>Extractor (WinRAR):</strong><br />
+                    <a class="btn"
+                       href="https://www.win-rar.com/download.html?&L=0"
+                       target="_blank"
+                       rel="noopener">
+                        Download WinRAR
+                    </a>
+                </p>
+
+                <p style="margin-top:12px;">
+                    <strong>.NET 8 SDK (Windows x64):</strong><br />
+                    Please download and install this if it’s not already installed on your system.<br />
+                    <a class="btn"
+                       href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.412-windows-x64-installer"
+                       target="_blank"
+                       rel="noopener">
+                        Download .NET 8 SDK Installer
+                    </a>
+                </p>
+
+                <p style="margin-top:14px; font-size:14px; color:rgba(234,240,255,.75);">
+                    Tip: After installing dependencies, restart your PC and try launching the game again.
+                </p>
+            </div>
+
         </div>
-        <a class="btn" href="/trancemir/">← Back to Home</a>
-      </div>
-
-     <div class="box">
-  <p><strong>Client Download:</strong></p>
-  <p>
-    <a class="btn"
-       href="https://drive.google.com/uc?export=download&id=1uVM24qcHqfibVE5i5U89WyAYBtpmG6Ee"
-       target="_blank"
-       rel="noopener">
-      Download TranceMir Client (3 GB)
-    </a>
-  </p>
-
-  <p style="margin-top:12px;">
-    <strong>Installation Notes:</strong><br/>
-    • Extract the client to a <strong>new folder</strong> (don’t overwrite old installs).<br/>
-    • If the game doesn’t launch, install the required dependencies below.<br/>
-  </p>
-
-  <p style="margin-top:12px;">
-    <strong>Required Dependencies:</strong><br/>
-    <a class="btn" href="https://mirfiles.com/resources/mir3/zircon/ZirconClientDependencies.zip" target="_blank" rel="noopener">
-      Download TranceMir Dependencies (ZIP)
-    </a>
-  </p>
-
-  <p style="margin-top:12px;">
-    <strong>Extractor (WinRAR):</strong><br/>
-    <a class="btn" href="https://www.win-rar.com/download.html?&L=0" target="_blank" rel="noopener">
-      Download WinRAR
-    </a>
-  </p>
-
-  <p style="margin-top:12px;">
-    <strong>.NET 8 SDK (Windows x64):</strong><br/>
-    Please download and install this if it’s not already installed on your system.<br/>
-    <a class="btn" href="https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.412-windows-x64-installer" target="_blank" rel="noopener">
-      Download .NET 8 SDK Installer
-    </a>
-  </p>
-
-  <p style="margin-top:14px; font-size:14px; color:rgba(234,240,255,.75);">
-    Tip: After installing dependencies, restart your PC and try launching the game again.
-  </p>
-</div>
-
     </div>
-  </div>
 </body>
 </html>
