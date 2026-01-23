@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trance Games</title>
+    <title>Welcome</title>
 
     <style>
         html, body {
@@ -19,120 +19,84 @@
 
         .wrap {
             position: relative;
-            top: 40px;
+            top: 42px;
             opacity: 0;
         }
 
         h1 {
-            margin: 0 0 6px;
-            font-size: 32px;
-            letter-spacing: 1px;
+            margin: 0 0 8px;
+            font-size: 34px;
+            letter-spacing: 1.5px;
         }
 
         p {
-            margin: 0 0 20px;
-            font-size: 13px;
-            opacity: 0.85;
+            margin: 0;
+            font-size: 14px;
+            opacity: 0.8;
         }
 
-        a.btn {
-            display: inline-block;
-            padding: 10px 18px;
-            border: 1px solid #2b3442;
-            border-radius: 10px;
-            color: #EAF0FF;
-            text-decoration: none;
-            background: #111827;
+        .sub {
+            margin-top: 14px;
+            font-size: 12px;
+            opacity: 0.55;
         }
 
-            /* Hover animation (old-IE friendly: simple color change) */
-            a.btn:hover {
-                border-color: #5b6a7a;
-                background: #162033;
-            }
-
-        /* Tiny "sparkle" dots (visual motion without modern CSS) */
+        /* Ambient dots */
         .dot {
             position: absolute;
             width: 2px;
             height: 2px;
             background: #EAF0FF;
-            opacity: 0.2;
+            opacity: 0.15;
         }
     </style>
 </head>
 
 <body>
     <div id="wrap" class="wrap">
-        <h1>Trance Games</h1>
-        <p>Open official website</p>
-        <a class="btn" id="go" href="https://www.trancegames.com/">Go to TranceGames.com</a>
+        <h1>Welcome to TrancePW</h1>
+        <p>Preparing your journey…</p>
+        <div class="sub">Please wait while the client updates</div>
     </div>
 
     <script>
         (function () {
             var wrap = document.getElementById('wrap');
-            var btn = document.getElementById('go');
 
-            // Create a few drifting dots (very cheap animation)
-            var dots = [];
-            for (var i = 0; i < 18; i++) {
+            // Fade-in
+            var start = +new Date();
+            function fade() {
+                var t = (new Date() - start) / 800;
+                wrap.style.opacity = t < 1 ? t : 1;
+                if (t < 1) setTimeout(fade, 16);
+            }
+            fade();
+
+            // Floating motion
+            setInterval(function () {
+                var now = +new Date();
+                var bob = Math.sin(now / 700) * 6;
+                wrap.style.top = (42 + bob) + 'px';
+            }, 30);
+
+            // Ambient drifting dots
+            for (var i = 0; i < 16; i++) {
                 var d = document.createElement('div');
                 d.className = 'dot';
                 d.style.left = (Math.random() * 100) + '%';
                 d.style.top = (Math.random() * 100) + '%';
-                d._vy = 0.15 + Math.random() * 0.35;  // speed
-                d._vx = (Math.random() - 0.5) * 0.2;
-                d._a = 0.08 + Math.random() * 0.22;  // opacity
-                d.style.opacity = d._a;
+                d._vy = 0.1 + Math.random() * 0.25;
                 document.body.appendChild(d);
-                dots.push(d);
+
+                (function (dot) {
+                    setInterval(function () {
+                        var t = parseFloat(dot.style.top);
+                        t += dot._vy;
+                        if (t > 102) t = -2;
+                        dot.style.top = t + '%';
+                    }, 50);
+                })(d);
             }
-
-            // Fade-in + gentle float (no transforms; uses top/opacity for compatibility)
-            var start = +new Date();
-            var baseTop = 40;
-            var pulse = 0;
-
-            function tick() {
-                var now = +new Date();
-                var t = (now - start) / 900; // fade duration
-
-                // Fade in
-                var op = t < 1 ? t : 1;
-                wrap.style.opacity = op;
-
-                // Gentle float
-                var bob = Math.sin(now / 650) * 6; // pixels
-                wrap.style.top = (baseTop + bob) + 'px';
-
-                // Button pulse (border color breathing)
-                pulse += 0.06;
-                var p = (Math.sin(pulse) + 1) / 2; // 0..1
-                var c = Math.floor(43 + p * 90);   // 43..133
-                btn.style.borderColor = 'rgb(' + c + ',' + (c + 10) + ',' + (c + 25) + ')';
-
-                // Drift dots
-                for (var i = 0; i < dots.length; i++) {
-                    var d = dots[i];
-                    var top = parseFloat(d.style.top) || 0;
-                    var left = parseFloat(d.style.left) || 0;
-                    top += d._vy * 0.25;
-                    left += d._vx * 0.25;
-
-                    if (top > 102) top = -2;
-                    if (left > 102) left = -2;
-                    if (left < -2) left = 102;
-
-                    d.style.top = top + '%';
-                    d.style.left = left + '%';
-                }
-
-                if (window.requestAnimationFrame) requestAnimationFrame(tick);
-                else setTimeout(tick, 16);
-            }
-
-            tick();
         })();
     </script>
 </body>
