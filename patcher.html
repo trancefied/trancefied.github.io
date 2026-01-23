@@ -1,112 +1,139 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Trance Games</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trance Games</title>
 
-<style>
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #070A12;
-  color: #EAF0FF;
-  font-family: Tahoma, Arial, sans-serif;
-}
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #070A12;
+            color: #EAF0FF;
+            font-family: Tahoma, Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
 
-.container {
-  text-align: center;
-  padding-top: 40px;
-}
+        .wrap {
+            position: relative;
+            top: 40px;
+            opacity: 0;
+        }
 
-h1 {
-  font-size: 40px;
-  margin: 0 0 6px;
-}
+        h1 {
+            margin: 0 0 6px;
+            font-size: 32px;
+            letter-spacing: 1px;
+        }
 
-p {
-  margin: 0 0 24px;
-  opacity: .75;
-}
+        p {
+            margin: 0 0 20px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
 
-.cards {
-  display: inline-block;
-}
+        a.btn {
+            display: inline-block;
+            padding: 10px 18px;
+            border: 1px solid #2b3442;
+            border-radius: 10px;
+            color: #EAF0FF;
+            text-decoration: none;
+            background: #111827;
+        }
 
-.card {
-  width: 220px;
-  height: 240px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 0 12px;
-  padding: 28px 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 18px 40px rgba(0,0,0,.45);
-  color: #EAF0FF;
-}
+            /* Hover animation (old-IE friendly: simple color change) */
+            a.btn:hover {
+                border-color: #5b6a7a;
+                background: #162033;
+            }
 
-.card.clickable {
-  cursor: pointer;
-}
-
-.icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 12px;
-  border-radius: 14px;
-  background: rgba(0,0,0,.35);
-  line-height: 64px;
-  font-size: 24px;
-}
-
-.card h2 {
-  margin: 8px 0 6px;
-  font-size: 22px;
-}
-
-.card span {
-  font-size: 12px;
-  opacity: .75;
-}
-
-.disabled {
-  opacity: .5;
-}
-</style>
-
-<script>
-function openSite(url) {
-  try {
-    window.external.OpenBrowser(url); // some PW patchers support this
-  } catch (e) {
-    window.open(url);
-  }
-}
-</script>
+        /* Tiny "sparkle" dots (visual motion without modern CSS) */
+        .dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #EAF0FF;
+            opacity: 0.2;
+        }
+    </style>
 </head>
 
 <body>
-<div class="container">
-  <h1>Trance Games</h1>
-  <p>Select a world</p>
-
-  <div class="cards">
-    <div class="card clickable" onclick="openSite('https://www.trancegames.com/')">
-      <div class="icon">TM</div>
-      <h2>TranceMir</h2>
-      <span>Seasonal Mir 3 experience</span>
+    <div id="wrap" class="wrap">
+        <h1>Trance Games</h1>
+        <p>Open official website</p>
+        <a class="btn" id="go" href="https://www.trancegames.com/">Go to TranceGames.com</a>
     </div>
 
-    <div class="card disabled">
-      <div class="icon">PW</div>
-      <h2>TrancePW</h2>
-      <span>Coming soon</span>
-    </div>
-  </div>
-</div>
+    <script>
+        (function () {
+            var wrap = document.getElementById('wrap');
+            var btn = document.getElementById('go');
+
+            // Create a few drifting dots (very cheap animation)
+            var dots = [];
+            for (var i = 0; i < 18; i++) {
+                var d = document.createElement('div');
+                d.className = 'dot';
+                d.style.left = (Math.random() * 100) + '%';
+                d.style.top = (Math.random() * 100) + '%';
+                d._vy = 0.15 + Math.random() * 0.35;  // speed
+                d._vx = (Math.random() - 0.5) * 0.2;
+                d._a = 0.08 + Math.random() * 0.22;  // opacity
+                d.style.opacity = d._a;
+                document.body.appendChild(d);
+                dots.push(d);
+            }
+
+            // Fade-in + gentle float (no transforms; uses top/opacity for compatibility)
+            var start = +new Date();
+            var baseTop = 40;
+            var pulse = 0;
+
+            function tick() {
+                var now = +new Date();
+                var t = (now - start) / 900; // fade duration
+
+                // Fade in
+                var op = t < 1 ? t : 1;
+                wrap.style.opacity = op;
+
+                // Gentle float
+                var bob = Math.sin(now / 650) * 6; // pixels
+                wrap.style.top = (baseTop + bob) + 'px';
+
+                // Button pulse (border color breathing)
+                pulse += 0.06;
+                var p = (Math.sin(pulse) + 1) / 2; // 0..1
+                var c = Math.floor(43 + p * 90);   // 43..133
+                btn.style.borderColor = 'rgb(' + c + ',' + (c + 10) + ',' + (c + 25) + ')';
+
+                // Drift dots
+                for (var i = 0; i < dots.length; i++) {
+                    var d = dots[i];
+                    var top = parseFloat(d.style.top) || 0;
+                    var left = parseFloat(d.style.left) || 0;
+                    top += d._vy * 0.25;
+                    left += d._vx * 0.25;
+
+                    if (top > 102) top = -2;
+                    if (left > 102) left = -2;
+                    if (left < -2) left = 102;
+
+                    d.style.top = top + '%';
+                    d.style.left = left + '%';
+                }
+
+                if (window.requestAnimationFrame) requestAnimationFrame(tick);
+                else setTimeout(tick, 16);
+            }
+
+            tick();
+        })();
+    </script>
 </body>
 </html>
