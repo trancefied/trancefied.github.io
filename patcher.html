@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Trance Games</title>
+
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #070A12;
+  color: #EAF0FF;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  padding-top: 40px;
+}
+
+h1 {
+  font-size: 40px;
+  margin: 0 0 6px;
+}
+
+p {
+  margin: 0 0 24px;
+  opacity: .75;
+}
+
+.cards {
+  display: inline-block;
+}
+
+.card {
+  width: 220px;
+  height: 240px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 12px;
+  padding: 28px 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  color: #EAF0FF;
+}
+
+.card.clickable {
+  cursor: pointer;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.35);
+  line-height: 64px;
+  font-size: 24px;
+}
+
+.card h2 {
+  margin: 8px 0 6px;
+  font-size: 22px;
+}
+
+.card span {
+  font-size: 12px;
+  opacity: .75;
+}
+
+.disabled {
+  opacity: .5;
+}
+</style>
+
+<script>
+function openSite(url) {
+  try {
+    window.external.OpenBrowser(url); // some PW patchers support this
+  } catch (e) {
+    window.open(url);
+  }
+}
+</script>
+</head>
+
+<body>
+<div class="container">
+  <h1>Trance Games</h1>
+  <p>Select a world</p>
+
+  <div class="cards">
+    <div class="card clickable" onclick="openSite('https://www.trancegames.com/')">
+      <div class="icon">TM</div>
+      <h2>TranceMir</h2>
+      <span>Seasonal Mir 3 experience</span>
+    </div>
+
+    <div class="card disabled">
+      <div class="icon">PW</div>
+      <h2>TrancePW</h2>
+      <span>Coming soon</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
