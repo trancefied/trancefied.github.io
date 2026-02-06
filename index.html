@@ -23,13 +23,58 @@
             justify-content: center;
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             color: #EAF0FF;
+            /* base background */
             background: radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%), radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%), linear-gradient(rgba(7,10,18,.85), rgba(7,10,18,.95));
+            position: relative;
+            overflow: hidden;
         }
+
+            /* ===== Page-side hover backgrounds (left/right halves) ===== */
+            body::before,
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity .35s ease, transform .65s ease;
+                z-index: 0;
+            }
+
+            /* Left side (TranceMir) */
+            body::before {
+                background: linear-gradient(to right, rgba(7,10,18,.25), rgba(7,10,18,.92) 70%), url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
+                /* make it feel left-weighted, not a hard split */
+                -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                transform: scale(1.03);
+            }
+
+            /* Right side (TrancePW) */
+            body::after {
+                background: linear-gradient(to left, rgba(7,10,18,.25), rgba(7,10,18,.92) 70%), url("/trancepw/BG-FHD.jpg") center / cover no-repeat;
+                -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                transform: scale(1.03);
+            }
+
+            /* Trigger page-side background by hovering cards */
+            body:has(.card.trancemir:hover)::before {
+                opacity: .78;
+                transform: scale(1.08);
+            }
+
+            body:has(.card.trancepw:hover)::after {
+                opacity: .78;
+                transform: scale(1.08);
+            }
 
         .container {
             text-align: center;
             max-width: 900px;
             padding: 40px 20px;
+            position: relative;
+            z-index: 1; /* above page-side backgrounds */
         }
 
         h1 {
@@ -117,9 +162,15 @@
             .cards {
                 grid-template-columns: 1fr;
             }
+
+            /* On mobile, we keep the page-side backgrounds disabled for clarity */
+            body::before,
+            body::after {
+                display: none;
+            }
         }
 
-        /* TranceMir hover background preview. */
+        /* TranceMir hover background preview (inside the card). */
         .card.trancemir {
             overflow: hidden;
         }
@@ -160,7 +211,7 @@
                 opacity: 1;
             }
 
-        /* TrancePW hover background preview (same effect, different assets). */
+        /* TrancePW hover background preview (inside the card). */
         .card.trancepw {
             overflow: hidden;
         }
@@ -200,6 +251,14 @@
             .card.trancepw:hover::after {
                 opacity: 1;
             }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            body::before, body::after,
+            .card, .card::before, .card::after {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
