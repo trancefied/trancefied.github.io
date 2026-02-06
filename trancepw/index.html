@@ -64,10 +64,12 @@
         }
 
         .brand,
-        .navlink {
+        .navlink,
+        .btn {
             position: relative;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 10px 14px;
             border-radius: 999px;
@@ -81,7 +83,8 @@
         }
 
             .brand:hover,
-            .navlink:hover {
+            .navlink:hover,
+            .btn:hover {
                 background: rgba(255,255,255,.11);
                 border-color: rgba(140,170,255,.35);
                 box-shadow: 0 12px 30px rgba(0,0,0,.25);
@@ -89,18 +92,20 @@
             }
 
             .brand::after,
-            .navlink::after {
+            .navlink::after,
+            .btn::after {
                 content: "";
                 position: absolute;
                 inset: -40%;
-                background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+                background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
                 transform: translateX(-60%) rotate(12deg);
                 transition: transform .45s ease;
                 pointer-events: none;
             }
 
             .brand:hover::after,
-            .navlink:hover::after {
+            .navlink:hover::after,
+            .btn:hover::after {
                 transform: translateX(60%) rotate(12deg);
             }
 
@@ -154,10 +159,8 @@
             border-radius: 999px;
             border: 1px solid rgba(255,255,255,.14);
             background: rgba(255,255,255,.04);
-            color: rgba(234,240,255,.85);
             font-size: 13px;
             margin: 0 auto 14px;
-            box-shadow: 0 14px 40px rgba(0,0,0,.28);
         }
 
         .dot {
@@ -196,30 +199,10 @@
             gap: 12px;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(255,255,255,.16);
-            background: rgba(255,255,255,.06);
-            font-weight: 800;
-            text-decoration: none;
-            transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+        .btn.primary {
+            background: linear-gradient(180deg, rgba(110,140,255,.18), rgba(255,255,255,.06));
+            border-color: rgba(140,170,255,.40);
         }
-
-            .btn.primary {
-                background: linear-gradient(180deg, rgba(110,140,255,.18), rgba(255,255,255,.06));
-                border-color: rgba(140,170,255,.40);
-            }
-
-            .btn:hover {
-                background: rgba(255,255,255,.13);
-                border-color: rgba(140,170,255,.40);
-                box-shadow: 0 16px 45px rgba(0,0,0,.28);
-                transform: translateY(-2px);
-            }
 
         footer {
             margin-top: 18px;
@@ -236,7 +219,17 @@
             <a class="brand" href="https://trancegames.com/">Trance Games</a>
 
             <nav>
-                <a class="navlink" href="https://discord.gg/pqJwt33kKF">Patch Notes</a>
+                <a class="navlink"
+                   href="http://trancepw.trancegames.com/"
+                   title="Manage and create accounts">
+                    User Panel
+                </a>
+
+                <a class="navlink"
+                   href="https://discord.com/channels/1332066733317554248/1332067249447768255">
+                    Patch Notes
+                </a>
+
                 <a class="navlink" href="https://discord.gg/pqJwt33kKF">Discord</a>
                 <a class="navlink" href="https://downloads.trancegames.com/TrancePW.zip">Download</a>
             </nav>
@@ -252,7 +245,7 @@
 
             <div class="subtitle">
                 <p>
-                    TrancePW is a fan-made, pre-beta private server designed to recreate the classic Perfect World experience from the early 2010s, inspired by the gameplay, pacing, and systems many players remember from the early days.
+                    TrancePW is a fan-made, private server designed to recreate the classic Perfect World experience from the early 2010s, inspired by the gameplay, pacing, and systems many players remember from the early days.
                 </p>
                 <p>
                     The goal is to recreate that old-school feel while gradually refining and expanding it through quality-of-life improvements. Development is active and ongoing, and as a beta project, features and progress may change, reset, or evolve as the server continues to grow.
@@ -269,6 +262,7 @@
             <div class="cta">
                 <a class="btn primary" href="https://downloads.trancegames.com/TrancePW.zip">Download Client</a>
                 <a class="btn" href="https://discord.gg/pqJwt33kKF">Join Discord</a>
+                <a class="btn" href="http://trancepw.trancegames.com/">User Panel</a>
             </div>
         </section>
 
