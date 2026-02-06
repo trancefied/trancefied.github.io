@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TrancePW</title>
+
+    <!-- Use TrancePW SVG as favicon -->
+    <link rel="icon" href="/trancepw/trancepw.svg" type="image/svg+xml">
+
+    <meta name="description" content="Fan-made pre-beta private server aiming to recreate the classic early-2010s Perfect World experience with gradual QoL improvements." />
+
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: #EAF0FF;
+            /* Background image + layered mood lighting (same approach as TranceMir, but TrancePW assets) */
+            background: radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%), radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%), radial-gradient(900px 620px at 50% 110%, rgba(255,140,200,.06), transparent 60%), linear-gradient(rgba(7,10,18,.70), rgba(7,10,18,.94)), url("/trancepw/BG-FHD.jpg") center / cover no-repeat;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #EAF0FF;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 22px 20px 56px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Header / Navigation ===== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: rgba(10,14,28,.42);
+            border: 1px solid rgba(255,255,255,.11);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 60px rgba(0,0,0,.35);
+            position: sticky;
+            top: 14px;
+            z-index: 5;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .navlink {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.05);
+            transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+            overflow: hidden;
+        }
+
+        .brand {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: .3px;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.06);
+            transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+        }
+
+            .brand img {
+                width: 22px;
+                height: 22px;
+                object-fit: contain;
+                display: block;
+                filter: drop-shadow(0 6px 16px rgba(0,0,0,.45));
+            }
+
+            .brand:hover {
+                background: rgba(255,255,255,.11);
+                border-color: rgba(140,170,255,.35);
+                box-shadow: 0 12px 30px rgba(0,0,0,.25);
+                transform: translateY(-1px);
+            }
+
+        .navlink:hover {
+            background: rgba(255,255,255,.11);
+            border-color: rgba(140,170,255,.35);
+            box-shadow: 0 12px 30px rgba(0,0,0,.25);
+            transform: translateY(-1px);
+        }
+
+        .navlink::after,
+        .brand::after {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+            transform: translateX(-60%) rotate(12deg);
+            transition: transform .45s ease;
+            pointer-events: none;
+        }
+
+        .navlink:hover::after,
+        .brand:hover::after {
+            transform: translateX(60%) rotate(12deg);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            margin-top: 18px;
+            padding: 46px 34px 28px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(110,140,255,.16), rgba(255,255,255,.03));
+            border: 1px solid rgba(255,255,255,.12);
+            backdrop-filter: blur(8px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 28px 90px rgba(0,0,0,.42);
+        }
+
+            /* Soft auras behind hero */
+            .hero::before,
+            .hero::after {
+                content: "";
+                position: absolute;
+                width: 560px;
+                height: 560px;
+                border-radius: 50%;
+                filter: blur(70px);
+                opacity: .30;
+                z-index: 0;
+            }
+
+            .hero::before {
+                left: -200px;
+                top: -260px;
+                background: rgba(120,150,255,.75);
+            }
+
+            .hero::after {
+                right: -220px;
+                bottom: -280px;
+                background: rgba(90,255,210,.26);
+            }
+
+            .hero > * {
+                position: relative;
+                z-index: 1;
+            }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.04);
+            color: rgba(234,240,255,.85);
+            font-size: 13px;
+            margin: 0 auto 14px;
+            box-shadow: 0 14px 40px rgba(0,0,0,.28);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(90,255,210,.85);
+            box-shadow: 0 0 18px rgba(90,255,210,.45);
+        }
+
+        .logo {
+            width: 84px;
+            height: 84px;
+            margin: 0 auto 10px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.14);
+            box-shadow: 0 18px 55px rgba(0,0,0,.35);
+        }
+
+            .logo img {
+                width: 56px;
+                height: 56px;
+                object-fit: contain;
+                display: block;
+                filter: drop-shadow(0 10px 24px rgba(0,0,0,.50));
+            }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 56px;
+            letter-spacing: .7px;
+            text-shadow: 0 14px 55px rgba(0,0,0,.60);
+        }
+
+        .subtitle {
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.75;
+            max-width: 85ch;
+            color: rgba(234,240,255,.90);
+            text-align: left;
+        }
+
+            .subtitle strong {
+                color: rgba(234,240,255,.98);
+            }
+
+            .subtitle p {
+                margin: 0 0 14px;
+            }
+
+        /* CTA buttons */
+        .cta {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.06);
+            font-weight: 800;
+            letter-spacing: .2px;
+            transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+            overflow: hidden;
+            min-width: 190px;
+        }
+
+            .btn:hover {
+                background: rgba(255,255,255,.13);
+                border-color: rgba(140,170,255,.40);
+                box-shadow: 0 16px 45px rgba(0,0,0,.28);
+                transform: translateY(-2px);
+            }
+
+            .btn::after {
+                content: "";
+                position: absolute;
+                inset: -40%;
+                background: linear-gradient(120deg, transparent, rgba(255,255,255,.22), transparent);
+                transform: translateX(-70%) rotate(10deg);
+                transition: transform .55s ease;
+                pointer-events: none;
+            }
+
+            .btn:hover::after {
+                transform: translateX(70%) rotate(10deg);
+            }
+
+            .btn.primary {
+                background: linear-gradient(180deg, rgba(110,140,255,.18), rgba(255,255,255,.06));
+                border-color: rgba(140,170,255,.40);
+            }
+
+        /* ===== Feature cards ===== */
+        .features {
+            margin-top: 16px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .card {
+            padding: 16px 16px 15px;
+            border-radius: 18px;
+            background: rgba(10,14,28,.38);
+            border: 1px solid rgba(255,255,255,.10);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 18px 60px rgba(0,0,0,.30);
+            text-align: left;
+            transition: transform .18s ease, border-color .18s ease, background .18s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-2px);
+                border-color: rgba(140,170,255,.26);
+                background: rgba(255,255,255,.05);
+            }
+
+            .card b {
+                display: block;
+                margin-bottom: 6px;
+            }
+
+            .card span {
+                color: rgba(234,240,255,.78);
+                line-height: 1.55;
+                font-size: 14px;
+            }
+
+        footer {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(234,240,255,.65);
+        }
+
+        @media (max-width: 900px) {
+            h1 {
+                font-size: 46px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                min-width: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <!-- Trance Games top-left goes to main page, like TranceMir -->
+            <a class="brand" href="https://trancegames.com/" aria-label="Trance Games Home">
+                <img src="/trancepw/trancepw.svg" alt="" aria-hidden="true">
+                Trance Games
+            </a>
+
+            <nav>
+                <a class="navlink" href="https://discord.gg/pqJwt33kKF">Patch Notes</a>
+                <a class="navlink" href="https://discord.gg/pqJwt33kKF">Discord</a>
+                <a class="navlink" href="https://downloads.trancegames.com/TrancePW.zip">Download</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="kicker">
+                <span class="dot"></span>
+                Pre-Beta • TrancePW
+            </div>
+
+            <div class="logo" aria-hidden="true">
+                <img src="/trancepw/trancepw.svg" alt="TrancePW" />
+            </div>
+
+            <h1>TrancePW</h1>
+
+            <div class="subtitle">
+                <p>
+                    TrancePW is a fan-made, pre-beta private server designed to recreate the classic Perfect World experience from the early 2010s, inspired by the gameplay, pacing, and systems many players remember from the early days.
+                </p>
+
+                <p>
+                    The goal is to recreate that old-school feel while gradually refining and expanding it through quality-of-life improvements. Development is active and ongoing, and as a pre-beta project, features and progress may change, reset, or evolve as the server continues to grow.
+                </p>
+
+                <p>
+                    This project is not affiliated with, endorsed by, or connected to Arc Games, Perfect World Entertainment, or Perfect World International in any way. All original trademarks and assets remain the property of their respective owners.
+                </p>
+
+                <p>
+                    If you’re looking to relive the classic Perfect World experience from around PW&apos;s golden age, explore familiar systems in a fresh environment, and take part in a server shaped through ongoing development and community feedback—welcome home.
+                </p>
+
+                <p><strong>Welcome to TrancePW.</strong></p>
+            </div>
+
+            <div class="cta">
+                <a class="btn primary" href="https://downloads.trancegames.com/TrancePW.zip">Download Client</a>
+                <a class="btn" href="https://discord.gg/pqJwt33kKF">Join Discord</a>
+            </div>
+
+            <div class="features">
+                <div class="card">
+                    <b>Classic Early-2010s Feel</b>
+                    <span>Focused on the pacing, systems, and vibe people remember from Perfect World’s golden era.</span>
+                </div>
+                <div class="card">
+                    <b>Pre-Beta & Evolving</b>
+                    <span>Active development with ongoing improvements and adjustments as the server grows.</span>
+                </div>
+                <div class="card">
+                    <b>Community Shaped</b>
+                    <span>Built with player feedback in mind—help steer direction as features roll out.</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            © <span id="y"></span> TrancePW
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
