@@ -26,7 +26,10 @@
             /* base background */
             background: radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%), radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%), linear-gradient(rgba(7,10,18,.85), rgba(7,10,18,.95));
             position: relative;
-            overflow: hidden;
+            /* FIX: allow scrolling on mobile */
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
             /* ===== Page-side hover backgrounds (left/right halves) ===== */
