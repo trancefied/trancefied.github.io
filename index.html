@@ -78,6 +78,7 @@
                 transform: scale(1.08);
             }
 
+            /* Hide main background when hovering TrancePW */
             body:has(.card.trancepw:hover)::before {
                 opacity: 0;
             }
@@ -88,6 +89,7 @@
             padding: 40px 20px;
             position: relative;
             z-index: 1; /* above page-side backgrounds */
+            transform: translateY(-8vh); /* moved higher (desktop) */
         }
 
         h1 {
@@ -103,7 +105,7 @@
         }
 
         .cards {
-            margin-top: 36px;
+            margin-top: 26px; /* closer to text */
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
@@ -174,6 +176,10 @@
         @media (max-width: 800px) {
             .cards {
                 grid-template-columns: 1fr;
+            }
+
+            .container {
+                transform: translateY(-3vh); /* smaller shift on mobile */
             }
 
             /* On mobile, we keep the page-side backgrounds disabled for clarity */
