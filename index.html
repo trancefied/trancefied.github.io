@@ -46,11 +46,10 @@
             }
 
             /* Left side (TranceMir) */
+            /* Default main background */
             body::before {
-                background: linear-gradient(to right, rgba(7,10,18,.25), rgba(7,10,18,.92) 70%), url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
-                /* make it feel left-weighted, not a hard split */
-                -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
-                mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                background: linear-gradient(rgba(7,10,18,.65), rgba(7,10,18,.9)), url("/bg-fhd.png") center / cover no-repeat;
+                opacity: .65;
                 transform: scale(1.03);
             }
 
@@ -64,11 +63,17 @@
 
             /* Trigger page-side background by hovering cards */
             body:has(.card.trancemir:hover)::before {
+                background: linear-gradient(to right, rgba(7,10,18,.25), rgba(7,10,18,.92) 70%), url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
+                -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
                 opacity: .78;
                 transform: scale(1.08);
             }
 
             body:has(.card.trancepw:hover)::after {
+                background: linear-gradient(to left, rgba(7,10,18,.25), rgba(7,10,18,.92) 70%), url("/trancepw/BG-FHD.jpg") center / cover no-repeat;
+                -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
+                mask-image: linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 78%);
                 opacity: .78;
                 transform: scale(1.08);
             }
