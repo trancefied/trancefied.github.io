@@ -184,11 +184,18 @@
             }
 
             .container {
-                transform: translateY(-3vh); /* smaller shift on mobile */
+                transform: translateY(-3vh);
             }
 
-            /* On mobile, we keep the page-side backgrounds disabled for clarity */
-            body::before,
+            /* Keep main background, disable the PW side overlay on mobile */
+            body::before {
+                display: block;
+                opacity: .65;
+                -webkit-mask-image: none;
+                mask-image: none;
+                transform: scale(1.03);
+            }
+
             body::after {
                 display: none;
             }
