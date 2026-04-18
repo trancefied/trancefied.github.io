@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8VLJZNH05"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D8VLJZNH05');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activation Successful | TranceMir</title>
+  <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="TranceMir account activation successful." />
+
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#EAF0FF;
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(110,140,255,.24), transparent 60%),
+        radial-gradient(800px 520px at 85% 0%, rgba(90,255,210,.12), transparent 55%),
+        radial-gradient(900px 620px at 50% 110%, rgba(255,140,200,.06), transparent 60%),
+        linear-gradient(rgba(7,10,18,.70), rgba(7,10,18,.94)),
+        url("/trancemir/BG-FHD.jpg") center / cover no-repeat;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a { color:#EAF0FF; }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 20px 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .55;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,.16), transparent 40%),
+        radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,.12), transparent 40%),
+        radial-gradient(1.5px 1.5px at 35% 80%, rgba(255,255,255,.10), transparent 40%),
+        radial-gradient(1.5px 1.5px at 85% 70%, rgba(255,255,255,.09), transparent 40%),
+        radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,.09), transparent 40%);
+      animation: drift 18s ease-in-out infinite;
+    }
+
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .08;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.10) 0px,
+        rgba(255,255,255,.10) 1px,
+        transparent 2px,
+        transparent 6px
+      );
+      mix-blend-mode: overlay;
+      animation: scan 10s linear infinite;
+    }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px) translateX(0px); }
+      50% { transform: translateY(-10px) translateX(6px); }
+    }
+    @keyframes scan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    header {
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(10,14,28,.42);
+      border: 1px solid rgba(255,255,255,.11);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      animation: riseIn 700ms ease-out both;
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+    }
+
+    nav {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      justify-content:flex-end;
+    }
+
+    .navlink {
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-size: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      overflow: hidden;
+    }
+
+    .brand {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .brand:hover, .navlink:hover {
+      background: rgba(255,255,255,.11);
+      border-color: rgba(140,170,255,.35);
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      transform: translateY(-1px);
+    }
+
+    .navlink::after, .brand::after, .btn::after {
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-60%) rotate(12deg);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+
+    .navlink:hover::after, .brand:hover::after, .btn:hover::after { transform: translateX(60%) rotate(12deg); }
+
+    .hero {
+      margin-top: 18px;
+      padding: 46px 34px 28px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(110,140,255,.16), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,.42);
+      animation: riseIn 900ms ease-out both;
+    }
+
+    .hero::before,
+    .hero::after {
+      content:"";
+      position:absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .34;
+      z-index: 0;
+      animation: pulse 7s ease-in-out infinite;
+    }
+    .hero::before {
+      left: -200px;
+      top: -260px;
+      background: rgba(120,150,255,.75);
+    }
+    .hero::after {
+      right: -220px;
+      bottom: -280px;
+      background: rgba(90,255,210,.26);
+      animation-delay: 1.2s;
+    }
+
+    .hero-shine {
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.10), transparent);
+      transform: translateX(-60%) rotate(10deg);
+      animation: shine 7.5s ease-in-out infinite;
+      pointer-events:none;
+      z-index: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(18px, 10px) scale(1.06); }
+    }
+    @keyframes shine {
+      0% { transform: translateX(-60%) rotate(10deg); opacity:.0; }
+      20% { opacity:.5; }
+      55% { opacity:.0; }
+      100% { transform: translateX(60%) rotate(10deg); opacity:0; }
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: rgba(234,240,255,.85);
+      font-size: 13px;
+      margin: 0 auto 14px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(90,255,210,.85);
+      box-shadow: 0 0 18px rgba(90,255,210,.45);
+      animation: blink 1.7s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: .55; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 56px;
+      letter-spacing: .7px;
+      text-shadow: 0 14px 55px rgba(0,0,0,.60);
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 80ch;
+      color: rgba(234,240,255,.90);
+    }
+
+    .cta {
+      margin-top: 18px;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .btn {
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      font-weight: 800;
+      letter-spacing: .2px;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      overflow:hidden;
+      min-width: 190px;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.13);
+      border-color: rgba(140,170,255,.40);
+      box-shadow: 0 16px 45px rgba(0,0,0,.28);
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(110,140,255,.18), rgba(255,255,255,.06));
+      border-color: rgba(140,170,255,.40);
+    }
+
+    .message-box {
+      margin: 28px auto 0;
+      max-width: 760px;
+      padding: 22px 22px 20px;
+      border-radius: 20px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 22px 70px rgba(0,0,0,.35);
+      text-align: left;
+    }
+
+    .message-box h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .message-box p {
+      margin: 0;
+      color: rgba(234,240,255,.82);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .features {
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      animation: riseIn 1000ms ease-out both;
+    }
+
+    .card {
+      padding: 16px 16px 15px;
+      border-radius: 18px;
+      background: rgba(10,14,28,.38);
+      border: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.30);
+      text-align: left;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(140,170,255,.26);
+      background: rgba(255,255,255,.05);
+    }
+
+    .card b { display:block; margin-bottom: 6px; }
+    .card span { color: rgba(234,240,255,.78); line-height: 1.55; font-size: 14px; }
+
+    @media (max-width: 900px) {
+      .features { grid-template-columns: 1fr; }
+      h1 { font-size: 46px; }
+      .btn { min-width: 0; width: 100%; }
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(234,240,255,.65);
+      animation: fadeIn 1200ms ease-out both;
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .particles, .scanlines, header, .hero, .navlink::after, .brand::after,
+      .btn::after, .hero::before, .hero::after, .hero-shine {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="particles"></div>
+  <div class="scanlines"></div>
+
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/" aria-label="Trance Games Home">Trance Games</a>
+      <nav>
+        <a class="navlink" href="/trancemir/downloads/">Downloads</a>
+        <a class="navlink" href="https://discord.com/channels/1220136981871198310/1237763738438733854">Patch Notes</a>
+        <a class="navlink" href="/trancemir/rankings/">Rankings</a>
+        <a class="navlink" href="https://discord.gg/wrVCkxZkXb">Discord</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-shine"></div>
+
+      <div class="kicker">
+        <span class="dot"></span>
+        Account Activation Completed
+      </div>
+
+      <h1>Activation Successful</h1>
+
+      <p class="subtitle">
+        Your TranceMir account has been activated successfully and is now ready to use.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="/trancemir/downloads/">Download Client</a>
+        <a class="btn" href="https://discord.gg/wrVCkxZkXb">Join Discord</a>
+        <a class="btn" href="/trancemir/">Back to TranceMir</a>
+      </div>
+
+      <div class="message-box">
+        <h2>You’re ready to log in.</h2>
+        <p>
+          Return to the client and sign in with the account you just activated. If the client was already open,
+          close it and reopen it first. For updates, patch notes, and support, use the links above.
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="card">
+          <b>Client Access</b>
+          <span>Download the latest files and make sure your client is fully up to date before logging in.</span>
+        </div>
+        <div class="card">
+          <b>Patch Notes</b>
+          <span>Check the latest changes, balance updates, and seasonal adjustments before you jump in.</span>
+        </div>
+        <div class="card">
+          <b>Need Help?</b>
+          <span>If anything still looks wrong, reach out through Discord and include your account email.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> TranceMir
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
