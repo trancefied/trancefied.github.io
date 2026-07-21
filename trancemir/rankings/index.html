@@ -1,201 +1,470 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TranceMir — Rankings</title>
-  <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
-  <style>
-    :root { color-scheme: dark; }
-    body {
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#070A12;
-      color:#EAF0FF;
-    }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px; }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TranceMir — Rankings</title>
+    <link rel="icon" href="/trancemir/favicon.svg" type="image/svg+xml">
 
-    .card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px;
-      padding: 28px;
-    }
+    <style>
+        :root {
+            color-scheme: dark;
+        }
 
-    .top {
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom:16px;
-    }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #070A12;
+            color: #EAF0FF;
+        }
 
-    .btn {
-      display:inline-block;
-      padding: 10px 14px;
-      border-radius: 14px;
-      text-decoration:none;
-      color:#EAF0FF;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-    }
-    .btn:hover { background: rgba(255,255,255,.10); }
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 56px 20px;
+        }
 
-    h1 { margin:0 0 6px; font-size: 34px; }
-    p { margin: 0 0 14px; line-height: 1.6; color: rgba(234,240,255,.85); }
+        .card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+            padding: 28px;
+        }
 
-    .tabs { display:flex; gap:10px; margin: 10px 0 18px; }
-    .tab {
-      padding: 10px 12px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      cursor:pointer;
-      font-size: 14px;
-      user-select:none;
-    }
-    .tab.active { background: rgba(255,255,255,.10); }
+        .top {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
 
-    table {
-      width:100%;
-      border-collapse: collapse;
-      border-radius: 14px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
+        .btn {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #EAF0FF;
+            border: 1px solid rgba(255,255,255,.16);
+            background: rgba(255,255,255,.06);
+        }
 
-    th, td {
-      text-align:left;
-      padding: 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    th {
-      font-size: 13px;
-      color: rgba(234,240,255,.70);
-      font-weight: 600;
-    }
-    tr:last-child td { border-bottom: none; }
+            .btn:hover {
+                background: rgba(255,255,255,.10);
+            }
 
-    .note {
-      margin-top: 14px;
-      font-size: 14px;
-      color: rgba(234,240,255,.70);
-    }
-  </style>
+        h1 {
+            margin: 0 0 6px;
+            font-size: 34px;
+        }
+
+        p {
+            margin: 0 0 14px;
+            line-height: 1.6;
+            color: rgba(234,240,255,.85);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0 18px;
+        }
+
+        .tab {
+            padding: 10px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,.12);
+            background: rgba(255,255,255,.04);
+            color: #EAF0FF;
+            cursor: pointer;
+            font: inherit;
+            font-size: 14px;
+            user-select: none;
+        }
+
+            .tab:hover {
+                background: rgba(255,255,255,.07);
+            }
+
+            .tab.active {
+                background: rgba(255,255,255,.10);
+            }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 14px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 720px;
+            border-collapse: collapse;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.10);
+            background: rgba(255,255,255,.03);
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            white-space: nowrap;
+        }
+
+        th {
+            font-size: 13px;
+            color: rgba(234,240,255,.70);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255,255,255,.025);
+        }
+
+        .message-cell {
+            text-align: center;
+            color: rgba(234,240,255,.72);
+            padding: 24px;
+        }
+
+        .note {
+            margin-top: 14px;
+            font-size: 14px;
+            color: rgba(234,240,255,.70);
+        }
+
+            .note.error {
+                color: #FFB3B3;
+            }
+
+        @media (max-width: 600px) {
+            .wrap {
+                padding: 28px 12px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div>
-          <h1>Rankings</h1>
-          <p>Top players and guilds.</p>
+    <div class="wrap">
+        <div class="card">
+            <div class="top">
+                <div>
+                    <h1>Rankings</h1>
+                    <p>Top players and guilds.</p>
+                </div>
+
+                <a class="btn" href="/trancemir/">← Back to Home</a>
+            </div>
+
+            <div class="tabs" id="tabs" role="tablist">
+                <button type="button"
+                        class="tab active"
+                        data-view="players"
+                        role="tab"
+                        aria-selected="true">
+                    Players
+                </button>
+
+                <button type="button"
+                        class="tab"
+                        data-view="guilds"
+                        role="tab"
+                        aria-selected="false">
+                    Guilds
+                </button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead id="thead"></thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+
+            <div class="note" id="status">
+                Loading rankings...
+            </div>
         </div>
-        <a class="btn" href="/trancemir/">← Back to Home</a>
-      </div>
-
-      <div class="tabs" id="tabs">
-        <div class="tab active" data-view="players">Players</div>
-        <div class="tab" data-view="guilds">Guilds</div>
-      </div>
-
-      <table>
-        <thead id="thead"></thead>
-        <tbody id="tbody"></tbody>
-      </table>
-
     </div>
-  </div>
 
-  <script>
-    /* =========================
-       MANUAL DATA
-       ========================= */
+    <script>
+        const API_URL =
+            "https://mirapi.trancegames.com/?Type=Rankings";
 
-    // TOP 10 PLAYERS
-    // Order: Name → Class → Rebirth Level → Level
-    const PLAYERS = [
-      { name: "xxx", class: "xxx", rebirth: 0, level: 0 },
-      { name: "xxx",   class: "xxx",  rebirth: 0, level: 0 },
-      { name: "xxx",    class: "xxx",  rebirth: 0, level: 0 },
-      { name: "xxx",       class: "xxx", rebirth: 0, level: 0 },
-      { name: "xxx",        class: "xxx",rebirth: 0, level: 0 },
-      { name: "xxx",         class: "xxx",  rebirth: 0, level: 0 },
-      { name: "xxx",           class: "xxx",  rebirth: 0, level: 0 },
-      { name: "xxx",         class: "xxx",rebirth: 0, level: 0 },
-      { name: "xxx",        class: "xxx", rebirth: 0, level: 0 },
-      { name: "xxx",       class: "xxx",  rebirth: 0, level: 0 },
-    ];
+        const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 
-    // TOP 5 GUILDS (NAME ONLY)
-    const GUILDS = [
-      "xxx",
-      "xxx",
-      "xxx",
-      "xxx",
-      "xxx"
-    ];
+        const tabs = document.getElementById("tabs");
+        const thead = document.getElementById("thead");
+        const tbody = document.getElementById("tbody");
+        const status = document.getElementById("status");
 
-    /* =========================
-       RENDER LOGIC
-       ========================= */
+        let currentView = "players";
 
-    const tabs = document.getElementById("tabs");
-    const thead = document.getElementById("thead");
-    const tbody = document.getElementById("tbody");
+        let rankings = {
+            updatedAt: null,
+            players: [],
+            guilds: []
+        };
 
-    function renderPlayers() {
-      thead.innerHTML = `
-        <tr>
-          <th style="width:80px;">Rank</th>
-          <th>Name</th>
-          <th style="width:140px;">Class</th>
-          <th style="width:140px;">Rebirth</th>
-          <th style="width:140px;">Level</th>
-        </tr>
-      `;
+        function escapeHtml(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
 
-      tbody.innerHTML = PLAYERS.map((p, i) => `
-        <tr>
-          <td>${i + 1}</td>
-          <td>${p.name}</td>
-          <td>${p.class}</td>
-          <td>${p.rebirth}</td>
-          <td>${p.level}</td>
-        </tr>
-      `).join("");
-    }
+        function formatNumber(value) {
+            const number = Number(value);
 
-    function renderGuilds() {
-      thead.innerHTML = `
-        <tr>
-          <th style="width:80px;">Rank</th>
-          <th>Guild Name</th>
-        </tr>
-      `;
+            if (!Number.isFinite(number))
+                return "0";
 
-      tbody.innerHTML = GUILDS.map((g, i) => `
-        <tr>
-          <td>${i + 1}</td>
-          <td>${g || "—"}</td>
-        </tr>
-      `).join("");
-    }
+            return number.toLocaleString();
+        }
 
-    // Default view
-    renderPlayers();
+        function showLoading() {
+            status.classList.remove("error");
+            status.textContent = "Loading rankings...";
 
-    tabs.addEventListener("click", e => {
-      const tab = e.target.closest(".tab");
-      if (!tab) return;
+            if (currentView === "guilds") {
+                renderGuildHeaders();
 
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
+                tbody.innerHTML = `
+              <tr>
+                <td class="message-cell" colspan="5">
+                  Loading guild rankings...
+                </td>
+              </tr>
+            `;
+            } else {
+                renderPlayerHeaders();
 
-      tab.dataset.view === "players" ? renderPlayers() : renderGuilds();
-    });
-  </script>
+                tbody.innerHTML = `
+              <tr>
+                <td class="message-cell" colspan="6">
+                  Loading player rankings...
+                </td>
+              </tr>
+            `;
+            }
+        }
+
+        function renderPlayerHeaders() {
+            thead.innerHTML = `
+            <tr>
+              <th style="width:80px;">Rank</th>
+              <th>Name</th>
+              <th style="width:120px;">Class</th>
+              <th style="width:100px;">Rebirth</th>
+              <th style="width:100px;">Level</th>
+              <th>Guild</th>
+            </tr>
+          `;
+        }
+
+        function renderGuildHeaders() {
+            thead.innerHTML = `
+            <tr>
+              <th style="width:80px;">Rank</th>
+              <th>Guild Name</th>
+              <th style="width:100px;">Level</th>
+              <th style="width:160px;">Points</th>
+              <th style="width:110px;">Members</th>
+            </tr>
+          `;
+        }
+
+        function renderPlayers() {
+            renderPlayerHeaders();
+
+            if (!rankings.players.length) {
+                tbody.innerHTML = `
+              <tr>
+                <td class="message-cell" colspan="6">
+                  No player rankings available.
+                </td>
+              </tr>
+            `;
+
+                return;
+            }
+
+            tbody.innerHTML = rankings.players.map(player => `
+            <tr>
+              <td>${formatNumber(player.rank)}</td>
+              <td>${escapeHtml(player.name)}</td>
+              <td>${escapeHtml(player.class)}</td>
+              <td>${formatNumber(player.rebirth)}</td>
+              <td>${formatNumber(player.level)}</td>
+              <td>${escapeHtml(player.guild || "—")}</td>
+            </tr>
+          `).join("");
+        }
+
+        function renderGuilds() {
+            renderGuildHeaders();
+
+            if (!rankings.guilds.length) {
+                tbody.innerHTML = `
+              <tr>
+                <td class="message-cell" colspan="5">
+                  No guild rankings available.
+                </td>
+              </tr>
+            `;
+
+                return;
+            }
+
+            tbody.innerHTML = rankings.guilds.map(guild => `
+            <tr>
+              <td>${formatNumber(guild.rank)}</td>
+              <td>${escapeHtml(guild.name)}</td>
+              <td>${formatNumber(guild.level)}</td>
+              <td>${formatNumber(guild.points)}</td>
+              <td>${formatNumber(guild.members)}</td>
+            </tr>
+          `).join("");
+        }
+
+        function updateStatus() {
+            status.classList.remove("error");
+
+            if (!rankings.updatedAt) {
+                status.textContent = "Rankings are currently unavailable.";
+                return;
+            }
+
+            const updatedAt = new Date(rankings.updatedAt);
+
+            if (Number.isNaN(updatedAt.getTime())) {
+                status.textContent = "Rankings loaded.";
+                return;
+            }
+
+            status.textContent =
+                `Last updated: ${updatedAt.toLocaleString()}`;
+        }
+
+        function renderCurrentView() {
+            if (currentView === "guilds")
+                renderGuilds();
+            else
+                renderPlayers();
+
+            updateStatus();
+        }
+
+        async function loadRankings(showInitialLoading = false) {
+            if (showInitialLoading)
+                showLoading();
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "GET",
+                    cache: "no-store",
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Rankings request failed with status ${response.status}`
+                    );
+                }
+
+                const data = await response.json();
+
+                rankings = {
+                    updatedAt: data.updatedAt ?? null,
+                    players: Array.isArray(data.players)
+                        ? data.players
+                        : [],
+                    guilds: Array.isArray(data.guilds)
+                        ? data.guilds
+                        : []
+                };
+
+                renderCurrentView();
+            } catch (error) {
+                console.error("Unable to load rankings:", error);
+
+                status.classList.add("error");
+                status.textContent =
+                    "Unable to load rankings from the game server.";
+
+                if (
+                    rankings.players.length === 0 &&
+                    rankings.guilds.length === 0
+                ) {
+                    if (currentView === "guilds") {
+                        renderGuildHeaders();
+
+                        tbody.innerHTML = `
+                  <tr>
+                    <td class="message-cell" colspan="5">
+                      Rankings are temporarily unavailable.
+                    </td>
+                  </tr>
+                `;
+                    } else {
+                        renderPlayerHeaders();
+
+                        tbody.innerHTML = `
+                  <tr>
+                    <td class="message-cell" colspan="6">
+                      Rankings are temporarily unavailable.
+                    </td>
+                  </tr>
+                `;
+                    }
+                }
+            }
+        }
+
+        tabs.addEventListener("click", event => {
+            const tab = event.target.closest(".tab");
+
+            if (!tab)
+                return;
+
+            document.querySelectorAll(".tab").forEach(item => {
+                item.classList.remove("active");
+                item.setAttribute("aria-selected", "false");
+            });
+
+            tab.classList.add("active");
+            tab.setAttribute("aria-selected", "true");
+
+            currentView = tab.dataset.view;
+
+            renderCurrentView();
+        });
+
+        loadRankings(true);
+
+        setInterval(() => {
+            loadRankings(false);
+        }, REFRESH_INTERVAL_MS);
+    </script>
 </body>
 </html>
