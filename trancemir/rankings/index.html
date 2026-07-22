@@ -144,6 +144,22 @@
                 color: #FFB3B3;
             }
 
+
+        .player-name {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #35d06f;
+            box-shadow: 0 0 6px rgba(53, 208, 111, .75);
+            flex: 0 0 auto;
+        }
+
         @media (max-width: 600px) {
             .wrap {
                 padding: 28px 12px;
@@ -207,7 +223,7 @@
         const API_URL =
             "https://mirapi.trancegames.com/?Type=Rankings";
 
-            const REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+        const REFRESH_INTERVAL_MS = 60 * 60 * 1000;
 
         const tabs = document.getElementById("tabs");
         const thead = document.getElementById("thead");
@@ -248,48 +264,48 @@
                 renderGuildHeaders();
 
                 tbody.innerHTML = `
-              <tr>
-                <td class="message-cell" colspan="5">
-                  Loading guild rankings...
-                </td>
-              </tr>
-            `;
+                  <tr>
+                    <td class="message-cell" colspan="5">
+                      Loading guild rankings...
+                    </td>
+                  </tr>
+                `;
             } else {
                 renderPlayerHeaders();
 
                 tbody.innerHTML = `
-              <tr>
-                <td class="message-cell" colspan="6">
-                  Loading player rankings...
-                </td>
-              </tr>
-            `;
+                  <tr>
+                    <td class="message-cell" colspan="6">
+                      Loading player rankings...
+                    </td>
+                  </tr>
+                `;
             }
         }
 
         function renderPlayerHeaders() {
             thead.innerHTML = `
-            <tr>
-              <th style="width:80px;">Rank</th>
-              <th>Name</th>
-              <th style="width:120px;">Class</th>
-              <th style="width:100px;">Rebirth</th>
-              <th style="width:100px;">Level</th>
-              <th>Guild</th>
-            </tr>
-          `;
+                <tr>
+                  <th style="width:80px;">Rank</th>
+                  <th>Name</th>
+                  <th style="width:120px;">Class</th>
+                  <th style="width:100px;">Rebirth</th>
+                  <th style="width:100px;">Level</th>
+                  <th>Guild</th>
+                </tr>
+              `;
         }
 
         function renderGuildHeaders() {
             thead.innerHTML = `
-            <tr>
-              <th style="width:80px;">Rank</th>
-              <th>Guild Name</th>
-              <th style="width:100px;">Level</th>
-              <th style="width:160px;">Points</th>
-              <th style="width:110px;">Members</th>
-            </tr>
-          `;
+                <tr>
+                  <th style="width:80px;">Rank</th>
+                  <th>Guild Name</th>
+                  <th style="width:100px;">Level</th>
+                  <th style="width:160px;">Points</th>
+                  <th style="width:110px;">Members</th>
+                </tr>
+              `;
         }
 
         function renderPlayers() {
@@ -297,26 +313,31 @@
 
             if (!rankings.players.length) {
                 tbody.innerHTML = `
-              <tr>
-                <td class="message-cell" colspan="6">
-                  No player rankings available.
-                </td>
-              </tr>
-            `;
+                  <tr>
+                    <td class="message-cell" colspan="6">
+                      No player rankings available.
+                    </td>
+                  </tr>
+                `;
 
                 return;
             }
 
             tbody.innerHTML = rankings.players.map(player => `
-            <tr>
-              <td>${formatNumber(player.rank)}</td>
-              <td>${escapeHtml(player.name)}</td>
-              <td>${escapeHtml(player.class)}</td>
-              <td>${formatNumber(player.rebirth)}</td>
-              <td>${formatNumber(player.level)}</td>
-              <td>${escapeHtml(player.guild || "—")}</td>
-            </tr>
-          `).join("");
+                <tr>
+                  <td>${formatNumber(player.rank)}</td>
+                  <td>
+                    <span class="player-name">
+                      ${player.online ? '<span class="online-dot" title="Online" aria-label="Online"></span>' : ''}
+                      <span>${escapeHtml(player.name)}</span>
+                    </span>
+                  </td>
+                  <td>${escapeHtml(player.class)}</td>
+                  <td>${formatNumber(player.rebirth)}</td>
+                  <td>${formatNumber(player.level)}</td>
+                  <td>${escapeHtml(player.guild || "—")}</td>
+                </tr>
+              `).join("");
         }
 
         function renderGuilds() {
@@ -324,25 +345,25 @@
 
             if (!rankings.guilds.length) {
                 tbody.innerHTML = `
-              <tr>
-                <td class="message-cell" colspan="5">
-                  No guild rankings available.
-                </td>
-              </tr>
-            `;
+                  <tr>
+                    <td class="message-cell" colspan="5">
+                      No guild rankings available.
+                    </td>
+                  </tr>
+                `;
 
                 return;
             }
 
             tbody.innerHTML = rankings.guilds.map(guild => `
-            <tr>
-              <td>${formatNumber(guild.rank)}</td>
-              <td>${escapeHtml(guild.name)}</td>
-              <td>${formatNumber(guild.level)}</td>
-              <td>${formatNumber(guild.points)}</td>
-              <td>${formatNumber(guild.members)}</td>
-            </tr>
-          `).join("");
+                <tr>
+                  <td>${formatNumber(guild.rank)}</td>
+                  <td>${escapeHtml(guild.name)}</td>
+                  <td>${formatNumber(guild.level)}</td>
+                  <td>${formatNumber(guild.points)}</td>
+                  <td>${formatNumber(guild.members)}</td>
+                </tr>
+              `).join("");
         }
 
         function updateStatus() {
@@ -420,22 +441,22 @@
                         renderGuildHeaders();
 
                         tbody.innerHTML = `
-                  <tr>
-                    <td class="message-cell" colspan="5">
-                      Rankings are temporarily unavailable.
-                    </td>
-                  </tr>
-                `;
+                      <tr>
+                        <td class="message-cell" colspan="5">
+                          Rankings are temporarily unavailable.
+                        </td>
+                      </tr>
+                    `;
                     } else {
                         renderPlayerHeaders();
 
                         tbody.innerHTML = `
-                  <tr>
-                    <td class="message-cell" colspan="6">
-                      Rankings are temporarily unavailable.
-                    </td>
-                  </tr>
-                `;
+                      <tr>
+                        <td class="message-cell" colspan="6">
+                          Rankings are temporarily unavailable.
+                        </td>
+                      </tr>
+                    `;
                     }
                 }
             }
