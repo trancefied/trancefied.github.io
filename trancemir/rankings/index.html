@@ -160,6 +160,11 @@
             flex: 0 0 auto;
         }
 
+            .online-dot.offline {
+                visibility: hidden;
+                box-shadow: none;
+            }
+
         @media (max-width: 600px) {
             .wrap {
                 padding: 28px 12px;
@@ -328,9 +333,13 @@
                   <td>${formatNumber(player.rank)}</td>
                   <td>
                     <span class="player-name">
-                      ${player.online ? '<span class="online-dot" title="Online" aria-label="Online"></span>' : ''}
-                      <span>${escapeHtml(player.name)}</span>
-                    </span>
+              <span
+                    class="online-dot ${player.online ? '' : 'offline'}"
+                    title="${player.online ? 'Online' : ''}"
+                    aria-label="${player.online ? 'Online' : 'Offline'}">
+                </span>
+                <span>${escapeHtml(player.name)}</span>
+              </span>
                   </td>
                   <td>${escapeHtml(player.class)}</td>
                   <td>${formatNumber(player.rebirth)}</td>
