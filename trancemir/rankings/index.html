@@ -40,6 +40,26 @@
             margin-bottom: 16px;
         }
 
+        .online-count {
+            flex: 1;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 700;
+            color: #62e995;
+            text-shadow: 0 0 10px rgba(53, 208, 111, .35);
+            white-space: nowrap;
+        }
+
+        .online-count-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            margin-right: 8px;
+            border-radius: 50%;
+            background: #35d06f;
+            box-shadow: 0 0 8px rgba(53, 208, 111, .8);
+        }
+
         .btn {
             display: inline-block;
             padding: 10px 14px;
@@ -190,6 +210,11 @@
                     <p>Top players and guilds.</p>
                 </div>
 
+                <div class="online-count" id="onlineCount">
+                    <span class="online-count-dot"></span>
+                    Online Players: —
+                </div>
+
                 <a class="btn" href="/trancemir/">← Back to Home</a>
             </div>
 
@@ -228,17 +253,19 @@
         const API_URL =
             "https://mirapi.trancegames.com/?Type=Rankings";
 
-        const REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+        const REFRESH_INTERVAL_MS = 60 * 1000;
 
         const tabs = document.getElementById("tabs");
         const thead = document.getElementById("thead");
         const tbody = document.getElementById("tbody");
         const status = document.getElementById("status");
+        const onlineCount = document.getElementById("onlineCount");
 
         let currentView = "players";
 
         let rankings = {
             updatedAt: null,
+            onlinePlayers: 0,
             players: [],
             guilds: []
         };
@@ -259,6 +286,13 @@
                 return "0";
 
             return number.toLocaleString();
+        }
+
+        function updateOnlineCount() {
+            onlineCount.innerHTML = `
+            <span class="online-count-dot"></span>
+            Online Players: ${formatNumber(rankings.onlinePlayers)}
+            `;
         }
 
         function showLoading() {
@@ -400,6 +434,7 @@
             else
                 renderPlayers();
 
+            updateOnlineCount();
             updateStatus();
         }
 
@@ -426,6 +461,9 @@
 
                 rankings = {
                     updatedAt: data.updatedAt ?? null,
+                    onlinePlayers: Number.isFinite(Number(data.onlinePlayers))
+                        ? Number(data.onlinePlayers)
+                        : 0,
                     players: Array.isArray(data.players)
                         ? data.players
                         : [],
